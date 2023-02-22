@@ -32,6 +32,8 @@ while True:
     ret, frame = cap.read()
     resized_frame = imutils.resize(frame, width = width_and_hieght)
 
+    cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0,255,255), 4)  # Line
+
     (h, w) = resized_frame.shape[:2]
     blob = cv2.dnn.blobFromImage(resized_frame, 1.0, (224, 224),(104.0, 177.0, 123.0))
 
@@ -61,9 +63,21 @@ while True:
 				# display the label and bounding box rectangle on the output
 				# frame
 
-                cv2.putText(resized_frame, "face", (startX, startY - 10),
-					cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
+                cv2.putText(resized_frame, "Customer", (startX, startY - 40),
+					cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
                 cv2.rectangle(resized_frame, (startX-face_detection_offset, startY-face_detection_offset), (endX+face_detection_offset, endY+face_detection_offset), (0, 255, 0), 2)
+
+
+                x = startX - face_detection_offset
+                y = startY - face_detection_offset
+                w = (endX + face_detection_offset) - startX
+                h = (endY + face_detection_offset) - startY
+
+                mid_point = get_Center(int(x), int(y), int(w),int(h))
+                cv2.circle(resized_frame, (mid_point[0], mid_point[1]), 6, color, -1)
+
+                if mid_point[1] < (ROI + offset) and mid_point[1] > (ROI - offset):
+                    cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
 
             except Exception as e:
