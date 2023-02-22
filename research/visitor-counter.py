@@ -12,8 +12,8 @@ if not cap.isOpened():
 
 while True:
     ret, frame = cap.read()
-    frame = imutils.resize(frame, width = width_and_hieght)
-    cv2.imshow('Display', frame)
+    resized_frame = imutils.resize(frame, width = width_and_hieght)
+    cv2.imshow('Display', resized_frame)
 
     waitKeyVal = cv2.waitKey(1)
     if waitKeyVal == 27:
