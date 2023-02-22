@@ -2,9 +2,10 @@ import os
 import cv2
 import imutils
 
-cap = cv2.VideoCapture(0)
 
 width_and_hieght = 1000
+
+cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
     print("ERROR: Failed to open webcam")
