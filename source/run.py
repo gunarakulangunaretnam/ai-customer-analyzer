@@ -50,9 +50,10 @@ while True:
     ret, frame = cap.read()
     resized_frame = imutils.resize(frame, width = width_and_hieght)
 
+    copy_frame = resized_frame.copy()
+
     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0,255,255), 4)  # Line
 
-    
     cv2.putText(resized_frame, f'Count:{number_of_customer} ', (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
 
     (h, w) = resized_frame.shape[:2]
@@ -101,6 +102,10 @@ while True:
                     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
                     if processing_status == False:
+                        
+                        face_roi = copy_frame[y:y+h+50, x:x+w+50]
+                        cv2.imwrite("doc.jpg", face_roi)
+                        
                         processing_status = True
                         main_function = threading.Thread(target=main_processor, args=(), daemon=True)
                         main_function.start()
