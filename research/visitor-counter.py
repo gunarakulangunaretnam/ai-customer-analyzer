@@ -11,8 +11,8 @@ while True:
     ret, frame = cap.read()
     cv2.imshow('Display', frame)
 
-    c = cv2.waitKey(1)
-    if c == 27:
+    waitKeyVal = cv2.waitKey(1)
+    if waitKeyVal == 27:
         break
 
 cap.release()
