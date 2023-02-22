@@ -5,6 +5,7 @@ import numpy as np
 
 ROI = 300
 offset = 8
+face_detection_offset = 20
 width_and_hieght = 1000
 
 
@@ -62,7 +63,7 @@ while True:
 
                 cv2.putText(resized_frame, "face", (startX, startY - 10),
 					cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 2)
-                cv2.rectangle(resized_frame, (startX, startY), (endX, endY), (0, 255, 0), 2)
+                cv2.rectangle(resized_frame, (startX-face_detection_offset, startY-face_detection_offset), (endX+face_detection_offset, endY+face_detection_offset), (0, 255, 0), 2)
 
 
             except Exception as e:
