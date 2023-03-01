@@ -15,8 +15,8 @@ processing_status = False
 number_of_customer = 0
 
 
-prototxtPath = r"models\deploy.prototxt"
-weightsPath = r"models\res10-300x300-ssd-iter-140000.caffemodel"
+prototxtPath = r"data\models\deploy.prototxt"
+weightsPath = r"data\models\res10-300x300-ssd-iter-140000.caffemodel"
 faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 cap = cv2.VideoCapture(1) #Camera 
@@ -102,10 +102,9 @@ while True:
                     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
                     if processing_status == False:
-                        
-                        face_roi = copy_frame[y:y+h+50, x:x+w+50]
-                        cv2.imwrite("doc.jpg", face_roi)
-                        
+
+                        cv2.imwrite("data/cache-image.jpg", copy_frame)
+
                         processing_status = True
                         main_function = threading.Thread(target=main_processor, args=(), daemon=True)
                         main_function.start()
