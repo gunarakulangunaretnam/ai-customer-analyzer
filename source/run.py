@@ -164,6 +164,8 @@ def main_processor(frame, mask_detection_data):
             predicted_emotion = "[NOT AVAILABLE]"
             predicted_race = "[NOT AVAILABLE]"
 
+            image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
+
             print(f"Error: {e}")
 
 
@@ -173,6 +175,8 @@ def main_processor(frame, mask_detection_data):
         predicted_gender = "[NOT AVAILABLE]"
         predicted_emotion = "[NOT AVAILABLE]"
         predicted_race = "[NOT AVAILABLE]"
+
+        image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
 
     
 
