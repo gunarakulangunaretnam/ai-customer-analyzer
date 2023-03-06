@@ -111,9 +111,6 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 def main_processor(frame, mask_detection_data):
     global processing_status, number_of_customer
 
-    
-
-
     predicted_age = ""
     predicted_gender = ""
     predicted_emotion = ""
@@ -126,6 +123,7 @@ def main_processor(frame, mask_detection_data):
         predicted_gender = face_attributes[0]["dominant_gender"]
         predicted_emotion = face_attributes[0]["dominant_emotion"]
         predicted_race = face_attributes[0]["dominant_race"]
+        
 
     elif mask_detection_data == "Mask":
 
