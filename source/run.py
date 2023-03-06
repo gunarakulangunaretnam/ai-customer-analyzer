@@ -21,7 +21,7 @@ processing_status = False
 number_of_customer = 0
 
 
-cap = cv2.VideoCapture(1) #Camera 
+cap = cv2.VideoCapture(0) #Camera 
 
 
 prototxtPath = r"data\models\deploy.prototxt"
@@ -106,7 +106,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 
 			return label
 
-
+def image_saver():
+    pass
 
 def main_processor(frame, mask_detection_data):
     global processing_status, number_of_customer
@@ -117,13 +118,22 @@ def main_processor(frame, mask_detection_data):
     predicted_race = ""
 
     if mask_detection_data == "No Mask":
-
-        face_attributes = DeepFace.analyze(frame,actions = ['age', 'gender', 'race', 'emotion'])
-        predicted_age = face_attributes[0]["age"]
-        predicted_gender = face_attributes[0]["dominant_gender"]
-        predicted_emotion = face_attributes[0]["dominant_emotion"]
-        predicted_race = face_attributes[0]["dominant_race"]
         
+        #If face is not found
+        try:
+            face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
+            predicted_age = face_attributes[0]["age"]
+            predicted_gender = face_attributes[0]["dominant_gender"]
+            predicted_emotion = face_attributes[0]["dominant_emotion"]
+            predicted_race = face_attributes[0]["dominant_race"]
+        except Exception as e:
+            predicted_age = "[NOT AVAILABLE]"
+            predicted_gender = "[NOT AVAILABLE]"
+            predicted_emotion = "[NOT AVAILABLE]"
+            predicted_race = "[NOT AVAILABLE]"
+
+            print("Face is not found")
+
 
     elif mask_detection_data == "Mask":
 
