@@ -1,5 +1,6 @@
 import os
 import cv2
+import uuid
 import time
 import imutils
 import threading
@@ -107,9 +108,9 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race):
+    
     cv2.rectangle(frame, (coordinates['x'], coordinates['y']), (coordinates['x'] + coordinates['w'], coordinates['y'] + coordinates['h']), (255, 0, 0), 2)
     
-
     if mask_data == "No Mask":
         cv2.putText(frame, f"Mask: Not Found", (coordinates['x'],coordinates['y']-10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     
@@ -122,7 +123,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     cv2.putText(frame, f"Race: {str(predicted_race).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     
     
-    cv2.imwrite("test.jpg",frame)
+    cv2.imwrite(f"predictions/{uuid.uuid4()}.jpg",frame)
 
 def main_processor(frame, mask_detection_data):
     global processing_status, number_of_customer
