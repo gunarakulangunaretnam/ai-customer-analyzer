@@ -2,6 +2,7 @@ import os
 import cv2
 import uuid
 import time
+import pygame
 import imutils
 import datetime
 import threading
@@ -13,6 +14,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
+pygame.mixer.init()
 
 ROI = 300
 offset = 8
@@ -21,7 +23,7 @@ face_detection_offset = 20
 
 number_of_customer = 0
 processing_status = False
-greeting_language = "Tamil"
+greeting_language = "English"
 cap = cv2.VideoCapture(0) #Camera 
 
 
@@ -36,19 +38,58 @@ maskNet = load_model("data\models\mask-detector.model")
 
 
 def greeting_function():
+
+    global greeting_language
+
     currentHour = int(datetime.datetime.now().hour)
     basicGreeting = ""
 
     if currentHour >= 0 and currentHour < 12:
-        basicGreeting = "Good Morning!"
+
+        if greeting_language == "English":
+            pygame.mixer.music.load('data\\greeting-voices\\english-good-morning.mp3')
+            pygame.mixer.music.play()
+
+        elif greeting_language == "Tamil":
+            pygame.mixer.music.load('data\\greeting-voices\\tamil-good-morning.mp3')
+            pygame.mixer.music.play()
+
+        
+        elif greeting_language == "Sinhala":
+            pygame.mixer.music.load('data\\greeting-voices\\sinhala-good-morning.mp3')
+            pygame.mixer.music.play()
+
+
 
     if currentHour >= 12 and currentHour < 18:
-        basicGreeting = "Good Afternoon!"
+
+        if greeting_language == "English":
+
+            pygame.mixer.music.load('data\\greeting-voices\\english-good-afternoon.mp3')
+            pygame.mixer.music.play()
+
+        elif greeting_language == "Tamil":
+            pygame.mixer.music.load('data\\greeting-voices\\tamil-good-afternoon.mp3')
+            pygame.mixer.music.play()
+        
+        elif greeting_language == "Sinhala":
+            pygame.mixer.music.load('data\\greeting-voices\\sinhala-good-afternoon.mp3')
+            pygame.mixer.music.play()
 
     if currentHour >= 18 and currentHour != 0:
-        basicGreeting = "Good Evening!"
 
-    return basicGreeting
+        if greeting_language == "English":
+            pygame.mixer.music.load('data\\greeting-voices\\english-good-evening.mp3')
+            pygame.mixer.music.play()
+
+        elif greeting_language == "Tamil":
+            pygame.mixer.music.load('data\\greeting-voices\\tamil-good-evening.mp3')
+            pygame.mixer.music.play()
+        
+        elif greeting_language == "Sinhala":
+            pygame.mixer.music.load('data\\greeting-voices\\sinhala-good-evening.mp3')
+            pygame.mixer.music.play()
+
 
 def get_center(x, y, w, h): # This function returns the center point of detected objects.
     x1 = int(w / 2)
@@ -141,31 +182,34 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     
     cv2.imwrite(f"predictions/{uuid.uuid4()}.jpg",frame)
 
-def main_processor(frame, mask_detection_data):
+def face_analyzer(frame, mask_detection_data):
+
     global processing_status, number_of_customer
+
+    #Call greeting function in thread
+    greeting_voice_function = threading.Thread(target=greeting_function, args=(), daemon=True)
+    greeting_voice_function.start()
 
     predicted_age = ""
     predicted_gender = ""
     predicted_emotion = ""
     predicted_race = ""
 
+    face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
+
     if mask_detection_data == "No Mask":
         
-        #If face is not found
         try:
-            face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
-
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
 
 
-        except Exception as e:
+        except Exception as e: #Face not found
             predicted_age = "[NOT AVAILABLE]"
             predicted_gender = "[NOT AVAILABLE]"
             predicted_emotion = "[NOT AVAILABLE]"
             predicted_race = "[NOT AVAILABLE]"
 
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
-
             print(f"Error: {e}")
 
 
@@ -177,8 +221,6 @@ def main_processor(frame, mask_detection_data):
         predicted_race = "[NOT AVAILABLE]"
 
         image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
-
-    
 
 
     number_of_customer = number_of_customer + 1
@@ -260,8 +302,11 @@ while True:
 
                     if processing_status == False:
                         processing_status = True
-                        main_function = threading.Thread(target=main_processor, args=(copy_frame,mask_detection_data), daemon=True)
-                        main_function.start()
+
+                        #Call main_processer
+                        face_analyzer_function = threading.Thread(target=face_analyzer, args=(copy_frame,mask_detection_data), daemon=True)
+                        face_analyzer_function.start()
+
             except Exception as e:
                 print(e)
 
