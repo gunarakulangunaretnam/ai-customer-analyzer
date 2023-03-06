@@ -126,6 +126,7 @@ def main_processor(frame, mask_detection_data):
             predicted_gender = face_attributes[0]["dominant_gender"]
             predicted_emotion = face_attributes[0]["dominant_emotion"]
             predicted_race = face_attributes[0]["dominant_race"]
+            
         except Exception as e:
             predicted_age = "[NOT AVAILABLE]"
             predicted_gender = "[NOT AVAILABLE]"
