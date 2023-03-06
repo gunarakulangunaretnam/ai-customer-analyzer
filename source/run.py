@@ -4,6 +4,8 @@ import time
 import imutils
 import threading
 import numpy as np
+import tensorflow as tf
+from deepface import DeepFace
 from imutils.video import VideoStream
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
@@ -16,8 +18,10 @@ face_detection_offset = 20
 width_and_hieght = 1000
 
 processing_status = False
-
 number_of_customer = 0
+
+
+cap = cv2.VideoCapture(1) #Camera 
 
 
 prototxtPath = r"data\models\deploy.prototxt"
@@ -27,8 +31,6 @@ faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 # load the face mask detector model from disk
 maskNet = load_model("data\models\mask-detector.model")
-
-cap = cv2.VideoCapture(0) #Camera 
 
 
 def get_center(x, y, w, h): # This function returns the center point of detected objects.
@@ -94,7 +96,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 		# faces at the same time rather than one-by-one predictions
 		# in the above `for` loop
 		faces = np.array(faces, dtype="float32")
-		preds = maskNet.predict(faces, batch_size=32)
+		preds = maskNet.predict(faces, batch_size=32, verbose=0)
 
 		for (box, pred) in zip(locs, preds):
             # unpack the bounding box and predictions
@@ -105,14 +107,40 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 
-def main_processor():
+
+def main_processor(frame, mask_detection_data):
     global processing_status, number_of_customer
 
     
 
+
+    predicted_age = ""
+    predicted_gender = ""
+    predicted_emotion = ""
+    predicted_race = ""
+
+    if mask_detection_data == "No Mask":
+
+        face_attributes = DeepFace.analyze(frame,actions = ['age', 'gender', 'race', 'emotion'])
+        predicted_age = face_attributes[0]["age"]
+        predicted_gender = face_attributes[0]["dominant_gender"]
+        predicted_emotion = face_attributes[0]["dominant_emotion"]
+        predicted_race = face_attributes[0]["dominant_race"]
+
+    elif mask_detection_data == "Mask":
+
+        predicted_age = "[NOT AVAILABLE]"
+        predicted_gender = "[NOT AVAILABLE]"
+        predicted_emotion = "[NOT AVAILABLE]"
+        predicted_race = "[NOT AVAILABLE]"
+
+    
+
+
     number_of_customer = number_of_customer + 1
     
     processing_status = False
+
 
 
 
@@ -173,12 +201,12 @@ while True:
                 mid_point = get_center(int(x), int(y), int(w),int(h))
                 cv2.circle(resized_frame, (mid_point[0], mid_point[1]), 6, color, -1)
 
-                detection_data = detect_and_predict_mask(frame, faceNet, maskNet)
+                mask_detection_data = detect_and_predict_mask(frame, faceNet, maskNet)
 
-                if detection_data == "No Mask":
+                if mask_detection_data == "No Mask":
                     cv2.putText(resized_frame, "Customer (No Mask)", (startX, startY - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, color, 2)
                     cv2.rectangle(resized_frame, (startX-face_detection_offset, startY-face_detection_offset), (endX+face_detection_offset, endY+face_detection_offset), (0, 0, 255), 2)
-                elif detection_data == "Mask":
+                elif mask_detection_data == "Mask":
                     cv2.putText(resized_frame, "Customer (Mask)", (startX, startY - 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
                     cv2.rectangle(resized_frame, (startX-face_detection_offset, startY-face_detection_offset), (endX+face_detection_offset, endY+face_detection_offset), (255, 0, 0), 2)
 
@@ -187,13 +215,9 @@ while True:
                     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
                     if processing_status == False:
-
-                        cv2.imwrite("data/cache-image.jpg", copy_frame)
-
-                        
-                        processing_status = True
-                        main_function = threading.Thread(target=main_processor, args=(), daemon=True)
-                        main_function.start()
+                    	processing_status = True
+                    	main_function = threading.Thread(target=main_processor, args=(copy_frame,mask_detection_data), daemon=True)
+                    	main_function.start()
                     
             except Exception as e:
                 print(e)
