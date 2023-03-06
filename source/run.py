@@ -3,6 +3,7 @@ import cv2
 import uuid
 import time
 import imutils
+import datetime
 import threading
 import numpy as np
 import tensorflow as tf
@@ -32,6 +33,22 @@ faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 # load the face mask detector model from disk
 maskNet = load_model("data\models\mask-detector.model")
 
+
+
+def greeting_function():
+    currentHour = int(datetime.datetime.now().hour)
+    basicGreeting = ""
+
+    if currentHour >= 0 and currentHour < 12:
+        basicGreeting = "Good Morning!"
+
+    if currentHour >= 12 and currentHour < 18:
+        basicGreeting = "Good Afternoon!"
+
+    if currentHour >= 18 and currentHour != 0:
+        basicGreeting = "Good Evening!"
+
+    return basicGreeting
 
 def get_center(x, y, w, h): # This function returns the center point of detected objects.
     x1 = int(w / 2)
