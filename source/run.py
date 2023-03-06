@@ -15,13 +15,12 @@ from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
 ROI = 300
 offset = 8
-face_detection_offset = 20
 width_and_hieght = 1000
+face_detection_offset = 20
 
-processing_status = False
 number_of_customer = 0
-
-
+processing_status = False
+greeting_language = "Tamil"
 cap = cv2.VideoCapture(0) #Camera 
 
 
