@@ -106,8 +106,23 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 
 			return label
 
-def image_saver():
-    pass
+def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race):
+    cv2.rectangle(frame, (coordinates['x'], coordinates['y']), (coordinates['x'] + coordinates['w'], coordinates['y'] + coordinates['h']), (255, 0, 0), 2)
+    
+
+    if mask_data == "No Mask":
+        cv2.putText(frame, f"Mask: Not Found", (coordinates['x'],coordinates['y']-10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    
+    elif mask_data == "Mask":
+        cv2.putText(frame, f"Mask: Found", (coordinates['x'],coordinates['y']-10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    
+    cv2.putText(frame, f"Age: {str(predicted_age).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Gender: {str(predicted_gender).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Emotion: {str(predicted_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Race: {str(predicted_race).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    
+    
+    cv2.imwrite("test.jpg",frame)
 
 def main_processor(frame, mask_detection_data):
     global processing_status, number_of_customer
@@ -122,18 +137,17 @@ def main_processor(frame, mask_detection_data):
         #If face is not found
         try:
             face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
-            predicted_age = face_attributes[0]["age"]
-            predicted_gender = face_attributes[0]["dominant_gender"]
-            predicted_emotion = face_attributes[0]["dominant_emotion"]
-            predicted_race = face_attributes[0]["dominant_race"]
-            
+
+            image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
+
+
         except Exception as e:
             predicted_age = "[NOT AVAILABLE]"
             predicted_gender = "[NOT AVAILABLE]"
             predicted_emotion = "[NOT AVAILABLE]"
             predicted_race = "[NOT AVAILABLE]"
 
-            print("Face is not found")
+            print(f"Error: {e}")
 
 
     elif mask_detection_data == "Mask":
@@ -224,10 +238,9 @@ while True:
                     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
                     if processing_status == False:
-                    	processing_status = True
-                    	main_function = threading.Thread(target=main_processor, args=(copy_frame,mask_detection_data), daemon=True)
-                    	main_function.start()
-                    
+                        processing_status = True
+                        main_function = threading.Thread(target=main_processor, args=(copy_frame,mask_detection_data), daemon=True)
+                        main_function.start()
             except Exception as e:
                 print(e)
 
