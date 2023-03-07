@@ -7,12 +7,46 @@ import imutils
 import datetime
 import threading
 import numpy as np
+import mysql.connector
 import tensorflow as tf
 from deepface import DeepFace
 from imutils.video import VideoStream
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
+
+
+database_host = ""
+database_user = ""
+database_pass = ""
+database_name = ""
+
+with open("data\\database-credentials.txt") as file_in:
+    for line in file_in:
+        line_data = line.strip().split("=")
+
+        if line_data[0] == "host":
+        	database_host = line_data[1]
+
+        elif line_data[0] == "user":
+        	database_user = line_data[1]
+
+        elif line_data[0] == "pass":
+        	database_pass = line_data[1]
+
+        elif line_data[0] == "database":
+        	database_name = line_data[1]
+
+
+mydb = mysql.connector.connect(
+  host = database_host,
+  user = database_user,
+  password = database_pass,
+  database = database_name
+)
+
+mycursor = mydb.cursor()
+
 
 pygame.mixer.init()
 
