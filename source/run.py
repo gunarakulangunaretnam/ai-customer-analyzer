@@ -1,6 +1,7 @@
 import os
 import cv2
 import uuid
+import json
 import time
 import pygame
 import imutils
@@ -21,22 +22,14 @@ database_user = ""
 database_pass = ""
 database_name = ""
 
-with open("data\\database-credentials.txt") as file_in:
-    for line in file_in:
-        line_data = line.strip().split("=")
+with open('data\\database-credentials.json') as f:
+    config_data = json.load(f)
 
-        if line_data[0] == "host":
-        	database_host = line_data[1]
-
-        elif line_data[0] == "user":
-        	database_user = line_data[1]
-
-        elif line_data[0] == "pass":
-        	database_pass = line_data[1]
-
-        elif line_data[0] == "database":
-        	database_name = line_data[1]
-
+    # Access the values from the dictionary
+    database_host = config_data['database_host']
+    database_user = config_data['database_user']
+    database_pass = config_data['database_password']
+    database_name = config_data['database_name']
 
 mydb = mysql.connector.connect(
   host = database_host,
