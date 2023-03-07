@@ -4,7 +4,8 @@ auto_id
 date
 time
 stall_no
-employee_name_id
+employee_id
+employee_name
 transcription
 prediction
 
@@ -13,8 +14,8 @@ vision_data
 auto_id
 date
 time
-image
 image_url
+mask
 age
 gender
 emotion
