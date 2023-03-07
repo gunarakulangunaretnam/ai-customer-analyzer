@@ -1,14 +1,3 @@
-audio_data
-----------
-auto_id
-date
-time
-stall_no
-employee_id
-employee_name
-transcription
-prediction
-
 vision_data
 -----------
 auto_id
@@ -21,11 +10,24 @@ gender
 emotion
 race
 
+audio_data
+----------
+auto_id
+date
+time
+stall_no
+employee_id
+employee_name
+transcription
+prediction
+
+
 settings
 --------
 auto_id
 title
 value
+
 
 user
 ---
