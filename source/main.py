@@ -1,3 +1,23 @@
+'''
+
+ * Date:            23-02-2023
+ * Organization:    Deep11
+ * Author:          Gunarakulan Gunaretnam
+ * Author Email:    gunarakulan@gmail.com
+ * Author Likedin:  https://www.linkedin.com/in/gunarakulangunaretnam/
+ * Author GitHub:   https://github.com/gunarakulangunaretnam 
+
+  Source Info
+  -----------
+  This is the main source file of the AI Customer Analyzer project; this script
+  can analyze facial attributes of humans: Age, Gender, Race, Emotions, Mask and
+  this script can count customers. 
+
+
+ '''
+
+
+
 import os
 import cv2
 import uuid
@@ -49,8 +69,6 @@ current_date = datetime.datetime.now().strftime('%d-%m-%Y')
 query = "SELECT COUNT(*) FROM vision_data WHERE date = current_date"
 mycursor.execute(query) # Execute the query
 number_of_customer = mycursor.fetchone()[0] # Get the count
-
-
 
 ### END SELECT TOTOAL NUMBER OF COUNTING OF THE DAY ###
 
