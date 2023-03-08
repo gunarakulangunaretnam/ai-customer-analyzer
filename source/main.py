@@ -270,7 +270,11 @@ while True:
 
     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0,255,255), 4)  # Line
 
-    cv2.putText(resized_frame, f'Count:{number_of_customer} ', (40, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
+    current_time = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+    cv2.putText(resized_frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
+
+    cv2.putText(resized_frame, f'Count:{number_of_customer} ', (5, 80), cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,0), 2)
 
     (h, w) = resized_frame.shape[:2]
     blob = cv2.dnn.blobFromImage(resized_frame, 1.0, (224, 224),(104.0, 177.0, 123.0))
