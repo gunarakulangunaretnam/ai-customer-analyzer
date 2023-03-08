@@ -61,15 +61,30 @@ mycursor = mydb.cursor()
 ### END DATABASE CONNECTION ###
 
 
-### START SELECT TOTOAL NUMBER OF COUNTING OF THE DAY ###
+### START GET TOTOAL NUMBER OF COUNTING OF THE DAY ###
 
 current_date = datetime.datetime.now().strftime('%d-%m-%Y')
-query = "SELECT COUNT(*) FROM vision_data WHERE date = current_date"
-mycursor.execute(query) # Execute the query
+query_to_get_total_numbers = "SELECT COUNT(*) FROM vision_data WHERE date = current_date"
+mycursor.execute(query_to_get_total_numbers) # Execute the query
 number_of_customer = mycursor.fetchone()[0] # Get the count
 
-### END SELECT TOTOAL NUMBER OF COUNTING OF THE DAY ###
+### END GET TOTOAL NUMBER OF COUNTING OF THE DAY ###
 
+
+### START GET VOICE LANGUAGE FROM SETTINGS TABLE ###
+
+query_to_get_lang = "SELECT _value FROM setting WHERE _key = 'voice_lang'"
+mycursor.execute(query_to_get_lang) # Execute the query
+greeting_language = mycursor.fetchall() # Fetch all data
+
+
+print(greeting_language)
+
+
+
+#print(query_to_get_lang)
+
+### END GET VOICE LANGUAGE FROM SETTINGS TABLE ###
 
 pygame.mixer.init()
 
@@ -77,9 +92,7 @@ ROI = 300
 offset = 8
 width_and_hieght = 1000
 face_detection_offset = 20
-
 processing_status = False
-greeting_language = "English"
 cap = cv2.VideoCapture(0) #Camera 
 
 
@@ -90,7 +103,6 @@ faceNet = cv2.dnn.readNet(prototxtPath, weightsPath)
 
 # load the face mask detector model from disk
 maskNet = load_model("data\models\mask-detector.model")
-
 
 
 def greeting_function():
