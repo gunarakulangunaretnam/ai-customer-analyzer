@@ -9,9 +9,9 @@
 
   Source Info
   -----------
-  This is the main source file of the AI Customer Analyzer project; this script
+  This is the vision analyzer script of the AI Customer Analyzer project; it
   can analyze facial attributes of humans: Age, Gender, Race, Emotions, Mask and
-  this script can count customers. 
+  this script can count customers and update all the information to the database. 
 
 
  '''
