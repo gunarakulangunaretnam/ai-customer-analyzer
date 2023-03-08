@@ -28,9 +28,44 @@ stall_no = ""
 employee_id = ""
 employee_name = ""
 
+def sentiment_analyzer(log_text, dataText):
+    
+    blob = TextBlob(dataText)
+    sentiment_score = blob.sentiment.polarity
+
+    if sentiment_score > 0:
+        sentiment_label = "Positive"
+
+    elif sentiment_score < 0:
+        sentiment_label = "Negative"
+
+    else:
+        sentiment_label = "Neutral"
+
+    print(f"\n{dataText} \n \n")
+    log_text.insert(END, f"\n{dataText}" + "\n \n")
+    log_text.see("end")
+
+    print(f"{sentiment_label} \n \n")
+
+    if sentiment_label == "Positive":
+
+        log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "blue")
+        log_text.tag_config("blue", foreground="blue")
+        log_text.see("end")
+
+    elif sentiment_label == "Neutral":
+        log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "orange")
+        log_text.tag_config("orange", foreground="orange")
+        log_text.see("end")
+    
+    elif sentiment_label == "Negative":
+        log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "red")
+        log_text.tag_config("red", foreground="red")
+        log_text.see("end")
 
 
-def audio_sentiment_analyzer(log_text):
+def audio_listener(log_text):
     while True:
         recorder = sr.Recognizer()
         with sr.Microphone() as source:
@@ -51,41 +86,7 @@ def audio_sentiment_analyzer(log_text):
                 
                 dataText = format(text)
 
-                blob = TextBlob(dataText)
-
-                sentiment_score = blob.sentiment.polarity
-
-                if sentiment_score > 0:
-                    sentiment_label = "Positive"
-
-                elif sentiment_score < 0:
-                    sentiment_label = "Negative"
-
-                else:
-                    sentiment_label = "Neutral"
-
-                print(f"\n{dataText} \n \n")
-                log_text.insert(END, f"\n{dataText}" + "\n \n")
-                log_text.see("end")
-
-                print(f"{sentiment_label} \n \n")
-
-                if sentiment_label == "Positive":
-
-                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "blue")
-                    log_text.tag_config("blue", foreground="blue")
-                    log_text.see("end")
-
-                elif sentiment_label == "Neutral":
-                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "orange")
-                    log_text.tag_config("orange", foreground="orange")
-                    log_text.see("end")
-                
-                elif sentiment_label == "Negative":
-                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "red")
-                    log_text.tag_config("red", foreground="red")
-                    log_text.see("end")
-
+                sentiment_analyzer(log_text, dataText)
 
             except:
                 pass
@@ -123,8 +124,8 @@ def open_analyzer():
         exit_button = Button(analyzer_window, text="Stop", font=("Helvetica", 16), command=analyzer_window.destroy)
         exit_button.place(x=200, y=300, width=200, height=50)
 
-        audio_sentiment_analyzer_function = threading.Thread(target=audio_sentiment_analyzer, args=(log_text,), daemon=True)
-        audio_sentiment_analyzer_function.start()
+        audio_listener_function = threading.Thread(target=audio_listener, args=(log_text,), daemon=True)
+        audio_listener_function.start()
 
         analyzer_window.mainloop()
 
