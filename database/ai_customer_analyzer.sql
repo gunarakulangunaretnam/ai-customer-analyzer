@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2023 at 07:41 AM
+-- Generation Time: Mar 08, 2023 at 10:41 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -46,15 +46,15 @@ CREATE TABLE `audio_data` (
 
 CREATE TABLE `setting` (
   `auto_id` int(250) NOT NULL,
-  `title` varchar(1000) NOT NULL,
-  `value` varchar(3000) NOT NULL
+  `_key` varchar(1000) NOT NULL,
+  `_value` varchar(3000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `setting`
 --
 
-INSERT INTO `setting` (`auto_id`, `title`, `value`) VALUES
+INSERT INTO `setting` (`auto_id`, `_key`, `_value`) VALUES
 (1, 'voice_lang', 'English');
 
 -- --------------------------------------------------------
@@ -130,7 +130,7 @@ ALTER TABLE `vision_data`
 -- AUTO_INCREMENT for table `audio_data`
 --
 ALTER TABLE `audio_data`
-  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT;
+  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -148,7 +148,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `vision_data`
 --
 ALTER TABLE `vision_data`
-  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT;
+  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
