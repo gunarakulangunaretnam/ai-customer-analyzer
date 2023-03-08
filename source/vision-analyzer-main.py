@@ -75,14 +75,8 @@ number_of_customer = mycursor.fetchone()[0] # Get the count
 
 query_to_get_lang = "SELECT _value FROM setting WHERE _key = 'voice_lang'"
 mycursor.execute(query_to_get_lang) # Execute the query
-greeting_language = mycursor.fetchall() # Fetch all data
-
-
-print(greeting_language)
-
-
-
-#print(query_to_get_lang)
+fetch_data = mycursor.fetchall() # Fetch all data
+greeting_language = fetch_data[0][0] 
 
 ### END GET VOICE LANGUAGE FROM SETTINGS TABLE ###
 
@@ -232,6 +226,37 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 
 			return label
 
+
+def database_updater(date_and_time, image_url, mask, age, gender, emotion, race):
+
+    data_date_and_time = date_and_time.split(" ")
+    _date = data_date_and_time[0].strip()
+    _time = data_date_and_time[1].strip()
+
+    data = {
+    'date': _date,
+    'time': _time,
+    'image_url': image_url,
+    'mask': mask,
+    'age': age,
+    'gender': gender,
+    'emotion':emotion,
+    'race': race
+    }
+
+    insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, gender, emotion, race) "
+         "VALUES (%(date)s, %(time)s, %(image_url)s, %(mask)s, %(age)s, %(gender)s, %(emotion)s, %(race)s)")
+
+    mycursor.execute(insert_query, data)
+    mydb.commit()
+
+    print("Step 03: Image Uploaded Remotely!")
+
+    #Here Call FTP function that uploads the image to the server
+
+    print("Step 04: Database Updated!")
+
+
 def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race):
     
     cv2.rectangle(frame, (coordinates['x'], coordinates['y']), (coordinates['x'] + coordinates['w'], coordinates['y'] + coordinates['h']), (255, 0, 0), 2)
@@ -254,6 +279,10 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     
     cv2.imwrite(f"predictions/{uuid.uuid4()}.jpg",frame)
 
+    print("Step 02: Image Saved Locally!")
+
+    database_updater(current_time, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
+
 def face_analyzer(frame, mask_detection_data):
 
     global processing_status, number_of_customer
@@ -267,40 +296,29 @@ def face_analyzer(frame, mask_detection_data):
     predicted_emotion = ""
     predicted_race = ""
 
-    face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
+    try:
+        face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
+        print("Step 01: Face Analyzed!")
 
-    if mask_detection_data == "No Mask":
-        
-        try:
+        if mask_detection_data == "No Mask":
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
 
+        elif mask_detection_data == "Mask":
 
-        except Exception as e: #Face not found
             predicted_age = "[NOT AVAILABLE]"
             predicted_gender = "[NOT AVAILABLE]"
             predicted_emotion = "[NOT AVAILABLE]"
             predicted_race = "[NOT AVAILABLE]"
 
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
-            print(f"Error: {e}")
 
 
-    elif mask_detection_data == "Mask":
+        number_of_customer = number_of_customer + 1
 
-        predicted_age = "[NOT AVAILABLE]"
-        predicted_gender = "[NOT AVAILABLE]"
-        predicted_emotion = "[NOT AVAILABLE]"
-        predicted_race = "[NOT AVAILABLE]"
-
-        image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
-
-
-    number_of_customer = number_of_customer + 1
+    except Exception as e:
+        print(f'Error: {e}')
     
     processing_status = False
-
-
-
 
 
 if not cap.isOpened():
