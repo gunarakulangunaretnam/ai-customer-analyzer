@@ -14,22 +14,57 @@
   based on what the customers and salesmans are talking.
 
  '''
-
+import json
 import queue
+import datetime
 import threading
 from tkinter import *
+import mysql.connector
 from textblob import TextBlob
 from tkinter import messagebox
 import speech_recognition as sr
 
+
+with open('data\\database-credentials.json') as f:
+    config_data = json.load(f)
+
+    # Access the values from the dictionary
+    database_host = config_data['database_host']
+    database_user = config_data['database_user']
+    database_pass = config_data['database_password']
+    database_name = config_data['database_name']
+
+mydb = mysql.connector.connect(
+  host = database_host,
+  user = database_user,
+  password = database_pass,
+  database = database_name
+)
+
+mycursor = mydb.cursor()
 
 # create global variables to store text information
 stall_no = ""
 employee_id = ""
 employee_name = ""
 
+
+def database_updater(dataText, output):
+    global stall_no, employee_id, employee_name
+    date = datetime.datetime.now().strftime('%d-%m-%Y')
+    time = datetime.datetime.now().strftime('%H:%M:%S')
+
+    # create SQL query
+    sql_code_insert = "INSERT INTO audio_data (date, time, stall_no, employee_id, employee_name, transcription, prediction) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+    data_val = (date, time, stall_no, employee_id, employee_name, dataText, output)
+
+    # execute query and commit changes
+    mycursor.execute(sql_code_insert, data_val)
+    mydb.commit()
+
+
 def sentiment_analyzer(log_text, dataText):
-    
+
     blob = TextBlob(dataText)
     sentiment_score = blob.sentiment.polarity
 
@@ -47,6 +82,8 @@ def sentiment_analyzer(log_text, dataText):
     log_text.see("end")
 
     print(f"{sentiment_label} \n \n")
+
+    database_updater(dataText, sentiment_label)
 
     if sentiment_label == "Positive":
 
