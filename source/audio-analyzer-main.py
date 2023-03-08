@@ -15,9 +15,13 @@
 
  '''
 
+import queue
+import threading
 from tkinter import *
+from textblob import TextBlob
 from tkinter import messagebox
 import speech_recognition as sr
+
 
 # create global variables to store text information
 stall_no = ""
@@ -25,29 +29,83 @@ employee_id = ""
 employee_name = ""
 
 
-# function to store the text information and open the analyzer window
+
+def audio_sentiment_analyzer(log_text):
+    while True:
+        recorder = sr.Recognizer()
+        with sr.Microphone() as source:
+
+            print("Listening...\n")
+            log_text.insert(END, "Listening...\n")
+            log_text.see("end")
+
+            recorder.pause_threshold = 1
+            audio = recorder.listen(source, phrase_time_limit=10)
+
+            try:
+                text = recorder.recognize_google(audio)
+
+                print("Recognizing...\n")
+                log_text.insert(END, "Recognizing...\n")
+                log_text.see("end")
+                
+                dataText = format(text)
+
+                blob = TextBlob(dataText)
+
+                sentiment_score = blob.sentiment.polarity
+
+                if sentiment_score > 0:
+                    sentiment_label = "Positive"
+
+                elif sentiment_score < 0:
+                    sentiment_label = "Negative"
+
+                else:
+                    sentiment_label = "Neutral"
+
+                print(f"\n{dataText} \n \n")
+                log_text.insert(END, f"\n{dataText}" + "\n \n")
+                log_text.see("end")
+
+                print(f"{sentiment_label} \n \n")
+
+                if sentiment_label == "Positive":
+
+                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "blue")
+                    log_text.tag_config("blue", foreground="blue")
+                    log_text.see("end")
+
+                elif sentiment_label == "Neutral":
+                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "orange")
+                    log_text.tag_config("orange", foreground="orange")
+                    log_text.see("end")
+                
+                elif sentiment_label == "Negative":
+                    log_text.insert(END, f"Output: {sentiment_label}" + "\n \n", "red")
+                    log_text.tag_config("red", foreground="red")
+                    log_text.see("end")
+
+
+            except:
+                pass
+
+
 def open_analyzer():
-    # store the text information into global variables
     global stall_no
     global employee_id
     global employee_name
-
 
     stall_no = stall_entry.get()
     employee_id = employee_id_entry.get()
     employee_name = employee_name_entry.get()
 
-
     if stall_no != "" and employee_id != "" and employee_name != "":
-
-        # close the main window
         root.destroy()
 
-        # create new window
         analyzer_window = Tk()
         analyzer_window.title("AI Customer Audio Analyzer")
 
-        # set window size and position
         window_width = 600
         window_height = 400
         screen_width = analyzer_window.winfo_screenwidth()
@@ -56,19 +114,20 @@ def open_analyzer():
         y_cordinate = int((screen_height/2) - (window_height/2))
         analyzer_window.geometry("{}x{}+{}+{}".format(window_width, window_height, x_cordinate, y_cordinate))
 
-        # create label for the heading
         heading_label = Label(analyzer_window, text="AI Customer Audio Analyzer", font=("Helvetica", 16), pady=10)
         heading_label.pack()
 
         log_text = Text(analyzer_window, width=40, height=10)
         log_text.place(x=100, y=100)
 
-        # create button to exit the window
         exit_button = Button(analyzer_window, text="Stop", font=("Helvetica", 16), command=analyzer_window.destroy)
         exit_button.place(x=200, y=300, width=200, height=50)
 
-        # run the analyzer window event loop
+        audio_sentiment_analyzer_function = threading.Thread(target=audio_sentiment_analyzer, args=(log_text,), daemon=True)
+        audio_sentiment_analyzer_function.start()
+
         analyzer_window.mainloop()
+
     else:
         messagebox.showwarning("Warning", "Please fill all fields.")
 
