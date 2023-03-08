@@ -16,7 +16,7 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import img_to_array
 from tensorflow.keras.applications.mobilenet_v2 import preprocess_input
 
-
+### START DATABASE CONNECTION ###
 database_host = ""
 database_user = ""
 database_pass = ""
@@ -40,6 +40,20 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
+### END DATABASE CONNECTION ###
+
+
+### START SELECT TOTOAL NUMBER OF COUNTING OF THE DAY ###
+
+current_date = datetime.datetime.now().strftime('%d-%m-%Y')
+query = "SELECT COUNT(*) FROM vision_data WHERE date = current_date"
+mycursor.execute(query) # Execute the query
+number_of_customer = mycursor.fetchone()[0] # Get the count
+
+
+
+### END SELECT TOTOAL NUMBER OF COUNTING OF THE DAY ###
+
 
 pygame.mixer.init()
 
@@ -48,7 +62,6 @@ offset = 8
 width_and_hieght = 1000
 face_detection_offset = 20
 
-number_of_customer = 0
 processing_status = False
 greeting_language = "English"
 cap = cv2.VideoCapture(0) #Camera 
@@ -200,7 +213,11 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     
     elif mask_data == "Mask":
         cv2.putText(frame, f"Mask: Found", (coordinates['x'],coordinates['y']-10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+
     
+    current_time = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
+
+    cv2.putText(frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
     cv2.putText(frame, f"Age: {str(predicted_age).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Gender: {str(predicted_gender).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Emotion: {str(predicted_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
