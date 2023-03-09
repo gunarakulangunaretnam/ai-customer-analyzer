@@ -9924,7 +9924,7 @@ a:focus {
   }
 }
 .bg-login-image {
-  background: url("../img/login-image.jpg");
+  background: url("./css/login-image.jpg");
   background-position: center;
   background-size: cover;
 }
