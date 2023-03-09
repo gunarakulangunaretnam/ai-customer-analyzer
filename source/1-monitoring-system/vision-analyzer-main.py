@@ -227,9 +227,9 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 
-def database_updater(image_frame, date_and_time, image_url, mask, age, gender, emotion, race):
+def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
 
-    data_date_and_time = date_and_time.split(" ")
+    data_date_and_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     _date = data_date_and_time[0].strip()
     _time = data_date_and_time[1].strip()
 
@@ -281,7 +281,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
 
     print("Step 02: Image Saved Locally!")
 
-    database_updater(frame, current_time, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
+    database_updater(frame, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
 
 def face_analyzer(frame, mask_detection_data, face_region):
 

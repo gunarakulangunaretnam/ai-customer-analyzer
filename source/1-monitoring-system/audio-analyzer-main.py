@@ -51,7 +51,7 @@ employee_name = ""
 
 def database_updater(dataText, output):
     global stall_no, employee_id, employee_name
-    date = datetime.datetime.now().strftime('%d-%m-%Y')
+    date = datetime.datetime.now().strftime('%Y-%m-%d')
     time = datetime.datetime.now().strftime('%H:%M:%S')
 
     # create SQL query
