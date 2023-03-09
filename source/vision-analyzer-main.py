@@ -227,7 +227,7 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 
-def database_updater(date_and_time, image_url, mask, age, gender, emotion, race):
+def database_updater(image_frame, date_and_time, image_url, mask, age, gender, emotion, race):
 
     data_date_and_time = date_and_time.split(" ")
     _date = data_date_and_time[0].strip()
@@ -281,7 +281,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
 
     print("Step 02: Image Saved Locally!")
 
-    database_updater(current_time, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
+    database_updater(frame, current_time, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
 
 def face_analyzer(frame, mask_detection_data, face_region):
 
@@ -298,12 +298,13 @@ def face_analyzer(frame, mask_detection_data, face_region):
 
     try:      
 
-        
+        # When there is not mask, send for face analyzing.
         if mask_detection_data == "No Mask":
             face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
             print("Step 01: Face Analyzed!")
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
 
+        # When there is mask, do not send for face analyzing, only update the database.      
         elif mask_detection_data == "Mask":
 
             print("Step 01: Face Analyzing Failed: (Face with Mask)")
@@ -321,6 +322,7 @@ def face_analyzer(frame, mask_detection_data, face_region):
     except Exception as e:
         print(f'Error: {e}')
 
+        # When there is no mask but, face not found, do not send for face analyzing, only update the database.    
         if str(e).strip() == "Face could not be detected. Please confirm that the picture is a face photo or consider to set enforce_detection param to False.":
 
             print("Step 01: Face Analyzing Failed: (Face not Found)")
@@ -332,9 +334,7 @@ def face_analyzer(frame, mask_detection_data, face_region):
 
             image_saver(frame, face_region, mask_detection_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
 
-
-
-    
+    time.sleep(2)
     processing_status = False
 
 
