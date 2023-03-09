@@ -283,7 +283,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
 
     database_updater(current_time, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
 
-def face_analyzer(frame, mask_detection_data):
+def face_analyzer(frame, mask_detection_data, face_region):
 
     global processing_status, number_of_customer
 
@@ -296,27 +296,44 @@ def face_analyzer(frame, mask_detection_data):
     predicted_emotion = ""
     predicted_race = ""
 
-    try:
-        face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
-        print("Step 01: Face Analyzed!")
+    try:      
 
+        
         if mask_detection_data == "No Mask":
+            face_attributes = DeepFace.analyze(frame, actions = ['age', 'gender', 'race', 'emotion'])
+            print("Step 01: Face Analyzed!")
             image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
 
         elif mask_detection_data == "Mask":
 
-            predicted_age = "[NOT AVAILABLE]"
-            predicted_gender = "[NOT AVAILABLE]"
-            predicted_emotion = "[NOT AVAILABLE]"
-            predicted_race = "[NOT AVAILABLE]"
+            print("Step 01: Face Analyzing Failed: (Face with Mask)")
 
-            image_saver(frame, face_attributes[0]['region'], mask_detection_data, face_attributes[0]["age"], face_attributes[0]["dominant_gender"], face_attributes[0]["dominant_emotion"], face_attributes[0]["dominant_race"])
+            predicted_age = "NONE"
+            predicted_gender = "NONE"
+            predicted_emotion = "NONE"
+            predicted_race = "NONE"
+
+            image_saver(frame, face_region, mask_detection_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
 
 
         number_of_customer = number_of_customer + 1
 
     except Exception as e:
         print(f'Error: {e}')
+
+        if str(e).strip() == "Face could not be detected. Please confirm that the picture is a face photo or consider to set enforce_detection param to False.":
+
+            print("Step 01: Face Analyzing Failed: (Face not Found)")
+
+            predicted_age = "NONE"
+            predicted_gender = "NONE"
+            predicted_emotion = "NONE"
+            predicted_race = "NONE"
+
+            image_saver(frame, face_region, mask_detection_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
+
+
+
     
     processing_status = False
 
@@ -391,6 +408,8 @@ while True:
                     cv2.rectangle(resized_frame, (startX-face_detection_offset, startY-face_detection_offset), (endX+face_detection_offset, endY+face_detection_offset), (255, 0, 0), 2)
 
 
+                face_region = {'x': x, 'y': y, 'w': w, 'h': h}
+
                 if mid_point[1] < (ROI + offset) and mid_point[1] > (ROI - offset):
                     cv2.line(resized_frame, (0 , ROI), (1200 , ROI), (0, 0, 255), 4)
 
@@ -398,7 +417,7 @@ while True:
                         processing_status = True
 
                         #Call main_processer
-                        face_analyzer_function = threading.Thread(target=face_analyzer, args=(copy_frame,mask_detection_data), daemon=True)
+                        face_analyzer_function = threading.Thread(target=face_analyzer, args=(copy_frame,mask_detection_data, face_region), daemon=True)
                         face_analyzer_function.start()
 
             except Exception as e:
