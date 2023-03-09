@@ -32,7 +32,7 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Day: 1", "Day: 2", "Day: 3", "Day: 4", "Day: 5", "Day: 6", "Day: 7", "Day: 8", "Day: 9", "Day: 10", "Day: 11", "Day: 12","Day: 13","Day: 14","Day: 15","Day: 16","Day: 17","Day: 18","Day: 19","Day: 20","Day: 21","Day: 22","Day: 23","Day: 24","Day: 25","Day: 26","Day: 27","Day: 28","Day: 29","Day: 30","Day: 31"],
     datasets: [{
       label: "Earnings",
       lineTension: 0.3,
@@ -46,7 +46,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [4,2,2,3,4,5,6,7,8,9,8,12,23,42,32,2,1,23,4,43,54,56,76,87,5,43,32,2,1,23,32],
     }],
   },
   options: {
@@ -78,7 +78,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -110,9 +110,10 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }
   }
 });
+
