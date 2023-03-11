@@ -230,8 +230,10 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
 
     data_date_and_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    _date = data_date_and_time[0].strip()
-    _time = data_date_and_time[1].strip()
+    _date = data_date_and_time.split(' ')[0].strip()
+    _time =  data_date_and_time.split(' ')[1].strip()
+
+    print(_date)
 
     data = {
     'date': _date,
