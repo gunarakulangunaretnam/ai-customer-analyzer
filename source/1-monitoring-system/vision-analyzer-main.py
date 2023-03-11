@@ -233,17 +233,15 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     _date = data_date_and_time.split(' ')[0].strip()
     _time =  data_date_and_time.split(' ')[1].strip()
 
-    print(_date)
-
     data = {
     'date': _date,
     'time': _time,
     'image_url': image_url,
-    'mask': mask,
+    'mask': "Not Found" if mask == "No Mask" else "Found",
     'age': age,
-    'gender': gender,
-    'emotion':emotion,
-    'race': race
+    'gender': gender.capitalize(),
+    'emotion':emotion.capitalize(),
+    'race': race.capitalize()
     }
 
     insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, gender, emotion, race) "
