@@ -270,7 +270,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     
     current_time = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
-    cv2.putText(frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,0), 2)
+    cv2.putText(frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.putText(frame, f"Age: {str(predicted_age).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Gender: {str(predicted_gender).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Emotion: {str(predicted_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
