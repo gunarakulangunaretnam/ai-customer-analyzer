@@ -51,7 +51,7 @@
                 </a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-video"></i>
@@ -68,7 +68,7 @@
             </li>
 
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -106,11 +106,10 @@
 
                     <div style="width: 100%;">
 
-                        <h1 style="text-align: center !important;">Vision Data</h1>
+                        <h1 style="text-align: center !important;">Settings</h1>
 
                     </div>
       
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -118,150 +117,62 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-
-                   
-
                     <div class="jumbotron">
                         <div class="row">
-                            <div class="col-md-3 offset-md-3 col-lg-3 offset-lg-4">
+                            <div class="col-md-3 col-lg-3">
+                                <h4>Voice Settings</h4>
+                                <hr>
                                 <div class="input-group input-group-sm mb-3">
                                     <div class="input-group-prepend">
-                                        <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Search by Date:</span>
+                                        <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Select Language:</span>
                                     </div>
-                                    <input type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                    <select class="form-select form-control" name="language" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        <option value="tamil">Tamil</option>
+                                        <option value="sinhala">Sinhala</option>
+                                        <option value="english">English</option>
+                                    </select>
                                 </div>
+                                <button type="button" class="btn btn-primary btn-sm">Change</button>
+
                             </div>
                         </div>
                     </div>
-                    
 
+                    <!-- Page Heading -->
+                    <div class="jumbotron">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3">
+                                <h4>Change Password</h4>
+                                <hr>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Current Password:</span>
+                                    </div>
+                                    <input type="password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" size="5">
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">New Password:</span>
+                                    </div>
+                                    <input type="password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" size="5">
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group-prepend">
+                                        <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Confirm Password:</span>
+                                    </div>
+                                    <input type="password" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm" size="5">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-sm">Change</button>
+                            </div>
+                                                     
+                        </div>
+                    </div>
+                    
+                    
+                    
                     <div class="row">
 
-                        <table style="background-color: white; border: 5px solid rgb(197, 189, 189);" class="table table-hover table-light">
-                            <thead style="color:balck; background-color: #e3e5e8;">
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Time</th>
-                                <th scope="col">Image</th>
-                                <th scope="col">Mask</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Gender</th>
-                                <th scope="col">Emotion</th>
-                                <th scope="col">Race</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-
-                              <tr>
-                                <th scope="row">1</th>
-                                <td>2023-03-11</td>
-                                <td>14:01:32</td>
-                                <td>
-
-                                    <div class="card" style="width: 18rem;">
-                                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                                      </div>
-
-                                </td>
-                                <td>Not Found</td>
-                                <td>28</td>
-                                <td>Male</td>
-                                <td>Happy</td>
-                                <td>Asian</td>
-                              </tr>
-                             
-                            </tbody>
-                          </table>
+                      
 
                     </div>
                         
