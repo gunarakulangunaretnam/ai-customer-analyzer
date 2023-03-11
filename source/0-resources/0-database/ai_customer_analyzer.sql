@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2023 at 09:18 AM
+-- Generation Time: Mar 11, 2023 at 08:58 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `audio_data` (
   `auto_id` int(250) NOT NULL,
-  `date` varchar(100) NOT NULL,
+  `date` date NOT NULL,
   `time` varchar(100) NOT NULL,
   `stall_no` varchar(100) NOT NULL,
   `employee_id` varchar(250) NOT NULL,
@@ -84,7 +84,7 @@ INSERT INTO `user` (`auto_id`, `username`, `password`) VALUES
 
 CREATE TABLE `vision_data` (
   `auto_id` int(250) NOT NULL,
-  `date` varchar(60) NOT NULL,
+  `date` date NOT NULL,
   `time` varchar(60) NOT NULL,
   `image_url` varchar(5000) NOT NULL,
   `mask` varchar(60) NOT NULL,
@@ -130,7 +130,7 @@ ALTER TABLE `vision_data`
 -- AUTO_INCREMENT for table `audio_data`
 --
 ALTER TABLE `audio_data`
-  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `setting`
@@ -148,7 +148,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `vision_data`
 --
 ALTER TABLE `vision_data`
-  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
