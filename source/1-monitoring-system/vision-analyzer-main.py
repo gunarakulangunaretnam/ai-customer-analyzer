@@ -247,6 +247,16 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     elif age >= 65 and age <= 100:
         age_catagory = "Elder"
 
+
+
+    emotion_replaced = ""
+
+    if emotion.lower() == "fear":
+        emotion_replaced = "surprise"
+
+    else:
+        emotion_replaced = emotion
+
     data = {
     'date': _date,
     'time': _time,
@@ -255,7 +265,7 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     'age': age,
     'age_catagory':age_catagory,
     'gender': gender.capitalize(),
-    'emotion':emotion.capitalize(),
+    'emotion':emotion_replaced.capitalize(),
     'race': race.capitalize()
     }
 
@@ -267,7 +277,7 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
 
     print("Step 03: Image Uploaded Remotely!")
 
-    #Here Call FTP function that uploads the image to the server
+    # Here Call FTP function that uploads the image to the server
 
     print("Step 04: Database Updated!")
 
