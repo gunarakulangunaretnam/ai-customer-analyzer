@@ -248,7 +248,6 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
         age_catagory = "Elder"
 
 
-
     emotion_replaced = ""
 
     if emotion.lower() == "fear":
@@ -256,6 +255,17 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
 
     else:
         emotion_replaced = emotion
+
+
+    rece_replaced = ""
+
+    if race.lower() == "indian" or race.lower() == "latino hispanic" or race.lower() == "middle eastern":
+        rece_replaced = "asian"
+
+    else:
+        rece_replaced = race
+
+
 
     data = {
     'date': _date,
@@ -266,7 +276,7 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     'age_catagory':age_catagory,
     'gender': gender.capitalize(),
     'emotion':emotion_replaced.capitalize(),
-    'race': race.capitalize()
+    'race': rece_replaced.capitalize()
     }
 
     insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, age_catagory, gender, emotion, race) "
