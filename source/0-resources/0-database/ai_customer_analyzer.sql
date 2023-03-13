@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2023 at 08:58 AM
+-- Generation Time: Mar 13, 2023 at 11:39 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -89,6 +89,7 @@ CREATE TABLE `vision_data` (
   `image_url` varchar(5000) NOT NULL,
   `mask` varchar(60) NOT NULL,
   `age` varchar(50) NOT NULL,
+  `age_catagory` varchar(50) NOT NULL,
   `gender` varchar(60) NOT NULL,
   `emotion` varchar(100) NOT NULL,
   `race` varchar(250) NOT NULL
@@ -148,7 +149,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `vision_data`
 --
 ALTER TABLE `vision_data`
-  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=132;
+  MODIFY `auto_id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
