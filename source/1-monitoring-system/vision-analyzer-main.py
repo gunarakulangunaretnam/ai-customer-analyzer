@@ -233,19 +233,34 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     _date = data_date_and_time.split(' ')[0].strip()
     _time =  data_date_and_time.split(' ')[1].strip()
 
+    age_catagory = ""
+
+    if age >= 0 and age <= 12:
+        age_catagory = "Kid"
+
+    elif age >= 13 and age <= 19:
+        age_catagory = "Teenage"
+
+    elif age >= 20 and age <= 64:
+        age_catagory = "Adult"
+
+    elif age >= 65 and age <= 100:
+        age_catagory = "Elder"
+
     data = {
     'date': _date,
     'time': _time,
     'image_url': image_url,
     'mask': "Not Found" if mask == "No Mask" else "Found",
     'age': age,
+    'age_catagory':age_catagory,
     'gender': gender.capitalize(),
     'emotion':emotion.capitalize(),
     'race': race.capitalize()
     }
 
-    insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, gender, emotion, race) "
-         "VALUES (%(date)s, %(time)s, %(image_url)s, %(mask)s, %(age)s, %(gender)s, %(emotion)s, %(race)s)")
+    insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, age_catagory, gender, emotion, race) "
+         "VALUES (%(date)s, %(time)s, %(image_url)s, %(mask)s, %(age)s, %(age_catagory)s, %(gender)s, %(emotion)s, %(race)s)")
 
     mycursor.execute(insert_query, data)
     mydb.commit()
