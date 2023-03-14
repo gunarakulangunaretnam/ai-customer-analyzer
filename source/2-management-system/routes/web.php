@@ -16,4 +16,6 @@ use App\Http\Controllers\AuthenticationController;
 
 Route::get('/', [PageController::class, 'ViewIndexPageFunction'])->name("IndexPageLink");
 
-Route::post('/', [AuthenticationController::class, 'LoginFunction'])->name("LoginFunctionLink");;
+Route::post('/login-function', [AuthenticationController::class, 'LoginFunction'])->name("LoginFunctionLink");
+
+Route::get('/home-page-view', [PageController::class, 'ViewHomePageFunction'])->name("HomePageViewLink");

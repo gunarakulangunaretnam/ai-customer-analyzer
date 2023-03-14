@@ -11,4 +11,10 @@ class PageController extends Controller
         return view('index'); 
 
     }
+
+    public function ViewHomePageFunction(){
+
+        return view('home-page'); 
+        
+    }
 }

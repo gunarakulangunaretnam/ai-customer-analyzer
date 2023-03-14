@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticationController extends Controller
 {
@@ -31,22 +33,17 @@ class AuthenticationController extends Controller
 
         }
 
-        echo $username_from_db;
-        echo $password_from_db;
+         
+        if($user_entered_username == $username_from_db && $user_entered_password == $password_from_db){
 
-         /*
-        if($user_entered_username == $username_from_db && Hash::check($user_entered_password, $password_from_db)){
+            Session::put('LoginAccess', '[TRUE]');
 
-            Session::put('Session_Type', 'Admin');
-            Session::put('Session_Value', $username_from_db);
+            $login_access_session = Session::get('LoginAccess');
 
-            $session_type = Session::get('Session_Type');
-            $session_value = Session::get('Session_Value');
+            # If password & username correct, redirect to home-page.blade.php
+            if($login_access_session == '[TRUE]'){
 
-
-            if($session_type == 'Admin'){
-
-                return Redirect::to("/view_dashboard_home");
+                return redirect()->route('HomePageViewLink');
             }
 
 
@@ -54,8 +51,6 @@ class AuthenticationController extends Controller
 
             return Redirect::to("/")->withErrors(['The username or password is incorrect']);
         }
-
-        */
 
     }
 }

@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,6 +24,28 @@
 <body class="bg-gradient-primary">
 
     <div class="container" style="margin-top: 2.5%;">
+
+        @if($errors->any())				
+            @foreach ($errors->all() as $error)
+                <div id="error-box" style="text-align:center;margin-top:20px;" class="alert alert-danger col-md-12 alert-dismissible fade show" role="alert">
+                    <strong>{!!$error!!}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <script>
+                    window.onload=function(){
+
+                        $(window).on('load', function() {
+                            $("#error-box").delay(3000).fadeOut();
+                        })
+
+                    }
+                </script>
+
+            @endforeach
+        @endif
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
