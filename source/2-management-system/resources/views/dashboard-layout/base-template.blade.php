@@ -66,7 +66,7 @@
 
 
             <li class="nav-item {{ $PageName == 'Settings' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="settings.html" >
+                <a class="nav-link collapsed" href="{{ route('SettingsViewLink') }}" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span>
                 </a>
