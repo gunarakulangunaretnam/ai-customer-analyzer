@@ -30,3 +30,5 @@ Route::get('/audio-data-view', [PageController::class, 'ViewAudioDataFunction'])
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
 
 Route::post('/settings-change-voice', [CurdController::class, 'SettingsChangeVoiceFunction'])->name("SettingsChangeVoiceFunctionLink");
+
+Route::post('/settings-change-password', [CurdController::class, 'SettingsChangePasswordFunction'])->name("SettingsChangePasswordFunctionLink");
