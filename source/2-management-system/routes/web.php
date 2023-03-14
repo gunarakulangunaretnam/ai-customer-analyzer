@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CurdController;
 use App\Http\Controllers\AuthenticationController;
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,6 @@ Route::get('/vision-data-view', [PageController::class, 'ViewVisionDataFunction'
 Route::get('/audio-data-view', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
+
+
+Route::post('/settings-change-voice', [CurdController::class, 'SettingsChangeVoiceFunction'])->name("SettingsChangeVoiceFunctionLink");
