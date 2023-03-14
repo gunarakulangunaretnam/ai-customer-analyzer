@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\AuthenticationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,4 +14,6 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'ViewIndexPageFunction']);
+Route::get('/', [PageController::class, 'ViewIndexPageFunction'])->name("IndexPageLink");
+
+Route::post('/', [AuthenticationController::class, 'LoginFunction'])->name("LoginFunctionLink");;

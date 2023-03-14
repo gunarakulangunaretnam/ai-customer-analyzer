@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthenticationController extends Controller
 {
@@ -20,7 +21,8 @@ class AuthenticationController extends Controller
         $username_from_db = "";
         $password_from_db = "";
 
-        $user = DB::select( DB::raw("SELECT username, password FROM user_account"));
+       
+        $user = DB::select('SELECT username, password FROM user');
 
         foreach($user as $u){
 
@@ -29,6 +31,10 @@ class AuthenticationController extends Controller
 
         }
 
+        echo $username_from_db;
+        echo $password_from_db;
+
+         /*
         if($user_entered_username == $username_from_db && Hash::check($user_entered_password, $password_from_db)){
 
             Session::put('Session_Type', 'Admin');
@@ -48,6 +54,8 @@ class AuthenticationController extends Controller
 
             return Redirect::to("/")->withErrors(['The username or password is incorrect']);
         }
+
+        */
 
     }
 }
