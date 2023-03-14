@@ -43,21 +43,21 @@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item active">
+            <li class="nav-item {{ $PageName == 'Home Page' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="homepage.html">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home Page</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="vision-data.html" >
                     <i class="fas fa-fw fa-video"></i>
                     <span>Vision Data</span>
                 </a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="audio-data.html" >
                     <i class="fas fa-fw fa-music"></i>
                     <span>Audio Data</span>
@@ -65,7 +65,7 @@
             </li>
 
 
-            <li class="nav-item">
+            <li class="nav-item {{ $PageName == 'Settings' ? 'active' : '' }}">
                 <a class="nav-link collapsed" href="settings.html" >
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span>
@@ -101,7 +101,7 @@
 
                     <div style="width: 100%;">
 
-                        <h1 style="text-align: center !important;">Home Page</h1>
+                        <h1 style="text-align: center !important;">{{ $PageName }}</h1>
 
                     </div>
       

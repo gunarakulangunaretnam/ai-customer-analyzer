@@ -19,7 +19,7 @@ class PageController extends Controller
 
         if($login_access_session == '[TRUE]'){
 
-            return view('home-page'); 
+            return view('home-page',['PageName' => 'Home Page']); 
             
         }else{
 
