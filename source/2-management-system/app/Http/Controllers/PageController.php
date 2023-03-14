@@ -45,4 +45,20 @@ class PageController extends Controller
         }
         
     }
+
+    public function ViewAudioDataFunction(){
+        
+        $login_access_session = Session::get('LoginAccess');
+
+        if($login_access_session == '[TRUE]'){
+
+            return view('audio-data',['PageName' => 'Audio Data']); 
+            
+        }else{
+
+            return redirect()->route('IndexPageLink');
+            
+        }
+        
+    }
 }

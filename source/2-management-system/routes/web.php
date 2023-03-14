@@ -23,3 +23,5 @@ Route::get('/logout-function', [AuthenticationController::class, 'LogoutFunction
 Route::get('/home-page-view', [PageController::class, 'ViewHomePageFunction'])->name("HomePageViewLink");
 
 Route::get('/vision-data-view', [PageController::class, 'ViewVisionDataFunction'])->name("VisionDataViewLink");
+
+Route::get('/audio-data-view', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
