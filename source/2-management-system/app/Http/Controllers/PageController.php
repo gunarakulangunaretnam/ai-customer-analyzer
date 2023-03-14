@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 
@@ -70,7 +71,13 @@ class PageController extends Controller
 
         if($login_access_session == '[TRUE]'){
 
-            return view('settings',['PageName' => 'Settings']); 
+            $current_language = DB::table('setting')->where('_key', 'voice_lang')->value('_value');
+
+
+            return view('settings', [
+                'PageName' => 'Settings',
+                'CurrentLanguage' => $current_language
+            ]);
             
         }else{
 

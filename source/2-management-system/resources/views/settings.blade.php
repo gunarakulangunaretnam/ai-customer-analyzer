@@ -18,8 +18,7 @@
             }
         </script>
     @endif
-
-
+    
     <!-- Page Heading -->
     <div class="jumbotron">
         <div class="row">
@@ -34,10 +33,10 @@
                             <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Select Language:</span>
                         </div>
                         <select class="form-select form-control" name="language" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
-                            <option value="tamil">Tamil</option>
-                            <option value="sinhala">Sinhala</option>
-                            <option value="english">English</option>
-                        </select>
+                            <option value="tamil" {{ $CurrentLanguage == 'Tamil' ? 'selected' : '' }}>Tamil</option>
+                            <option value="sinhala" {{ $CurrentLanguage == 'Sinhala' ? 'selected' : '' }}>Sinhala</option>
+                            <option value="english" {{ $CurrentLanguage == 'English' ? 'selected' : '' }}>English</option>
+                        </select>                        
                     </div>
                     <button type="submit" class="btn btn-primary btn-sm">Change</button>
                 </form>
