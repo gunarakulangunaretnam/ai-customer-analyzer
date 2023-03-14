@@ -41,21 +41,18 @@
                                     <div class="text-center" style="padding-bottom: 10%;">
                                         <h1 class="h4 text-gray-900 mb-4">AI Customer Analyzer <br> Login</h1>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" method="POST" action="{{ route('login') }}">
+                                        @csrf
                                         <div class="form-group" style="padding-bottom: 5%;">
-                                            <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp" name="username"
-                                                placeholder="Username">
+                                            <input type="text" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp"
+                                                   name="username" placeholder="Username" required>
                                         </div>
                                         <div class="form-group" style="padding-bottom: 5%;">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" name="password" placeholder="Password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword"
+                                                   name="password" placeholder="Password" required>
                                         </div>
-                                        <a href="homepage.html" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
-
-                                    </form>
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">Login</button>
+                                    </form>                                    
                                 </div>
                             </div>
                         </div>
