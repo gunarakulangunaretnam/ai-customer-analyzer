@@ -44,14 +44,14 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ $PageName == 'Home Page' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="homepage.html">
+                <a class="nav-link collapsed" href="{{ route('HomePageViewLink') }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home Page</span>
                 </a>
             </li>
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="vision-data.html" >
+                <a class="nav-link collapsed" href="{{ route('VisionDataViewLink') }}">
                     <i class="fas fa-fw fa-video"></i>
                     <span>Vision Data</span>
                 </a>
@@ -73,7 +73,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" >
+                <a class="nav-link collapsed" href="{{ route('LogoutFunctionLink') }}" >
                     <i class="fas fa-fw fa-power-off"></i>
                     <span>Logout</span>
                 </a>

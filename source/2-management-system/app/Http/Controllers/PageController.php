@@ -23,7 +23,24 @@ class PageController extends Controller
             
         }else{
 
-            return abort(404);
+            return redirect()->route('IndexPageLink');
+            
+        }
+        
+    }
+
+
+    public function ViewVisionDataFunction(){
+        
+        $login_access_session = Session::get('LoginAccess');
+
+        if($login_access_session == '[TRUE]'){
+
+            return view('vision-data',['PageName' => 'Vision Data']); 
+            
+        }else{
+
+            return redirect()->route('IndexPageLink');
             
         }
         
