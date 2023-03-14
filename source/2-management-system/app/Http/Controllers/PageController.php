@@ -6,5 +6,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    //
+    public function ViewIndexPageFunction(){
+
+        return view('index'); 
+
+    }
 }
