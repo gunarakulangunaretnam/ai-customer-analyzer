@@ -138,6 +138,8 @@ return [
     |
     */
 
+    'version' => '1.0.0',
+
     'maintenance' => [
         'driver' => 'file',
         // 'store'  => 'redis',
