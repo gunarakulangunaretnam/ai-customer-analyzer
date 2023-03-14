@@ -53,4 +53,9 @@ class AuthenticationController extends Controller
         }
 
     }
+
+    public function LogoutFunction(){
+        Session::flush();
+        return Redirect('/');
+    }
 }

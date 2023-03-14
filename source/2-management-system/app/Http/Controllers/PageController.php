@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 
@@ -13,8 +14,18 @@ class PageController extends Controller
     }
 
     public function ViewHomePageFunction(){
+        
+        $login_access_session = Session::get('LoginAccess');
 
-        return view('home-page'); 
+        if($login_access_session == '[TRUE]'){
+
+            return view('home-page'); 
+            
+        }else{
+
+            return abort(404);
+            
+        }
         
     }
 }

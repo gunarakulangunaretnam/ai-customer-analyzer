@@ -18,4 +18,6 @@ Route::get('/', [PageController::class, 'ViewIndexPageFunction'])->name("IndexPa
 
 Route::post('/login-function', [AuthenticationController::class, 'LoginFunction'])->name("LoginFunctionLink");
 
+Route::get('/logout-function', [AuthenticationController::class, 'LogoutFunction'])->name("LooutFunctionLink");
+
 Route::get('/home-page-view', [PageController::class, 'ViewHomePageFunction'])->name("HomePageViewLink");
