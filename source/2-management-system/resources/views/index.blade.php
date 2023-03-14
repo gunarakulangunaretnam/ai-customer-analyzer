@@ -44,12 +44,12 @@
                                     <form class="user">
                                         <div class="form-group" style="padding-bottom: 5%;">
                                             <input type="text" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" name="username"
                                                 placeholder="Username">
                                         </div>
                                         <div class="form-group" style="padding-bottom: 5%;">
                                             <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Password">
+                                                id="exampleInputPassword" name="password" placeholder="Password">
                                         </div>
                                         <a href="homepage.html" class="btn btn-primary btn-user btn-block">
                                             Login
