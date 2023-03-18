@@ -87,7 +87,7 @@ offset = 8
 width_and_hieght = 1000
 face_detection_offset = 20
 processing_status = False
-cap = cv2.VideoCapture(0) #Camera 
+cap = cv2.VideoCapture(1) #Camera 
 
 
 prototxtPath = r"data\models\deploy.prototxt"
@@ -302,14 +302,49 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     elif mask_data == "Mask":
         cv2.putText(frame, f"Mask: Found", (coordinates['x'],coordinates['y']-10), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
 
+    age_catagory = ""
+
+    predicted_age = int(predicted_age) # Convert STR to INT
+
+    if  predicted_age >= 0 and predicted_age <= 12:
+        age_catagory = "Kid"
+
+    elif predicted_age >= 13 and predicted_age <= 19:
+        age_catagory = "Teenage"
+
+    elif predicted_age >= 20 and predicted_age <= 64:
+        age_catagory = "Adult"
+
+    elif predicted_age >= 65 and predicted_age <= 100:
+        age_catagory = "Elder"
+
+
+    emotion_replaced = ""
+
+    if predicted_emotion.lower() == "fear":
+        emotion_replaced = "surprise"
+
+    else:
+        emotion_replaced = predicted_emotion
+
+
+    rece_replaced = ""
+
+    if predicted_race.lower() == "indian" or predicted_race.lower() == "latino hispanic" or predicted_race.lower() == "middle eastern":
+        rece_replaced = "asian"
+
+    else:
+        rece_replaced = predicted_race
+
+
     
     current_time = datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')
 
     cv2.putText(frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
-    cv2.putText(frame, f"Age: {str(predicted_age).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Age: {str(predicted_age).capitalize()} ({age_catagory})", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Gender: {str(predicted_gender).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-    cv2.putText(frame, f"Emotion: {str(predicted_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-    cv2.putText(frame, f"Race: {str(predicted_race).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Emotion: {str(emotion_replaced).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Race: {str(rece_replaced).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     
     
     cv2.imwrite(f"predictions/{uuid.uuid4()}.jpg",frame)
