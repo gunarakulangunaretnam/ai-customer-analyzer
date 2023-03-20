@@ -33,13 +33,23 @@ class PageController extends Controller
     }
 
 
-    public function ViewVisionDataFunction(){
+    public function ViewVisionDataFunction(string $search_by_date){
         
         $login_access_session = Session::get('LoginAccess');
 
         if($login_access_session == '[TRUE]'){
 
-            return view('vision-data',['PageName' => 'Vision Data']); 
+            if($search_by_date == '[FALSE]'){
+
+                $whole_vision_data = DB::select('SELECT * FROM vision_data');
+                return view('vision-data',['PageName' => 'Vision Data',"type_of_search" => "[WHOLE_SEARCH]", "vision_data"=>$whole_vision_data]); 
+
+            }else{
+
+                $date_wise_vision_data = DB::select("SELECT * FROM vision_data where date = '$search_by_date'");
+                return view('vision-data',['PageName' => 'Vision Data',"type_of_search" => "[DATE_WISE_SEARCH]", "vision_data"=>$date_wise_vision_data]); 
+                
+            }
             
         }else{
 

@@ -51,7 +51,7 @@
             </li>
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('VisionDataViewLink') }}">
+                <a class="nav-link collapsed" href="{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]'])}}">
                     <i class="fas fa-fw fa-video"></i>
                     <span>Vision Data</span>
                 </a>
@@ -66,7 +66,7 @@
 
 
             <li class="nav-item {{ $PageName == 'Settings' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('SettingsViewLink') }}" >
+                <a class="nav-link collapsed" href="{{ route('SettingsViewLink') }}">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Settings</span>
                 </a>

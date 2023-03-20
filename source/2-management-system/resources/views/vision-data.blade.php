@@ -10,10 +10,18 @@
         <div class="row">
             <div class="col-md-3 offset-md-3 col-lg-3 offset-lg-4">
                 <div class="input-group input-group-sm mb-3">
+
+                  <div style="text-align: center; margin-left:7%;">
+
+                    <input type="radio" id="show_all_data" name="search-type" onclick="window.location.href='{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]'])}}'"> Show all data |
+                    <input type="radio" id="search_by_date" name="search-type"> <label>Search by date</label>
+
+                  </div>
+
                     <div class="input-group-prepend">
                         <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Search by Date:</span>
                     </div>
-                    <input type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="date" id="date_picker" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                 </div>
             </div>
         </div>
@@ -30,125 +38,66 @@
                 <th scope="col">Image</th>
                 <th scope="col">Mask</th>
                 <th scope="col">Age</th>
+                <th scope="col">Age Category</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Emotion</th>
                 <th scope="col">Race</th>
               </tr>
             </thead>
             <tbody>
+
+              @foreach($vision_data as $data)
               <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
+                  <td>{{ $data->auto_id }}</td>
+                  <td>{{ $data->date }}</td>
+                  <td>{{ $data->time }}</td>
+                  <td>{{ $data->image_url }}</td>
+                  <td>{{ $data->mask }}</td>
+                  <td>{{ $data->age }}</td>
+                  <td>{{ $data->age_category}}</td>
+                  <td>{{ $data->gender}}</td>
+                  <td>{{ $data->emotion}}</td>
+                  <td>{{ $data->race}}</td>
               </tr>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
-              </tr>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
-              </tr>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
-              </tr>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
-              </tr>
-
-              <tr>
-                <th scope="row">1</th>
-                <td>2023-03-11</td>
-                <td>14:01:32</td>
-                <td>
-
-                    <div class="card" style="width: 18rem;">
-                        <a target="_blank" href="https://www.gstatic.com/webp/gallery/1.jpg"><img class="card-img-top" src="https://www.gstatic.com/webp/gallery/1.jpg" alt="Card image cap"></a>
-                      </div>
-
-                </td>
-                <td>Not Found</td>
-                <td>28</td>
-                <td>Male</td>
-                <td>Happy</td>
-                <td>Asian</td>
-              </tr>
-             
+              @endforeach      
             </tbody>
           </table>
 
     </div>
         
 </div>
+
+<script>
+
+  window.onload = function(){
+
+    if ("{{$type_of_search}}" == "[WHOLE_SEARCH]"){
+
+      document.getElementById("date_picker").disabled = true;
+      document.getElementById("show_all_data").checked = true;
+
+    }else if("{{$type_of_search}}" == "[DATE_WISE_SEARCH]"){
+
+      document.getElementById("date_picker").disabled = false;
+      document.getElementById("search_by_date").checked = true;
+
+    }
+
+    document.getElementById("search_by_date").onclick = function(){
+
+      document.getElementById("date_picker").disabled = false;
+
+    }
+
+    document.getElementById('date_picker').addEventListener('change', function() {
+      var selectedDate = this.value; // Get the selected date value
+      var url = "{{ route('VisionDataViewLink', ['search_by_date' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
+      url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
+      window.location.href = url; // Redirect to the updated URL
+  });
+
+  }
+  
+</script>
 
 @endsection
