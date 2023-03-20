@@ -10,10 +10,18 @@
             <div class="row">
                 <div class="col-md-3 offset-md-3 col-lg-3 offset-lg-4">
                     <div class="input-group input-group-sm mb-3">
+
+                        <div style="text-align: center; margin-left:7%;">
+
+                            <input type="radio" id="show_all_data" name="search-type" onclick="window.location.href='{{route('AudioDataViewLink', ['search_by_date' => '[FALSE]'])}}'"> Show all data |
+                            <input type="radio" id="search_by_date" name="search-type"> <label>Search by date</label>
+        
+                          </div>
+
                         <div class="input-group-prepend">
                             <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Search by Date:</span>
                         </div>
-                        <input type="date" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                        <input type="date"  id="date_picker"  class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                     </div>
                 </div>
             </div>
@@ -37,82 +45,28 @@
                 </thead>
                 <tbody>
 
+                    @foreach($audio_data as $data)
                     <tr>
-                    <th scope="row">1</th>
-                    <td>2023-03-11</td>
-                    <td>14:01:32</td>
-                    <td>S-132</td>
-                    <td>E-18</td>
-                    <td>David Juthushan</td>
-                    <td style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem.
-                        </td>
-                    <td style="font-weight: bold; color:blue;">Positive</td>
-                    </tr>
+                        <td>{{ $data->auto_id }}</td>
+                        <td>{{ $data->date }}</td>
+                        <td>{{ $data->time }}</td>
+                        <td>{{ $data->stall_no }}</td>
+                        <td>{{ $data->employee_id }}</td>
+                        <td>{{ $data->employee_name }}</td>
+                        <td>{{ $data->transcription}}</td>
 
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>2023-03-11</td>
-                    <td>14:01:32</td>
-                    <td>S-132</td>
-                    <td>E-18</td>
-                    <td>David Juthushan</td>
-                    <td style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem.
-                        </td>
-                    <td style="font-weight: bold; color:red;">Negative</td>
+                        @if($data->prediction =='Negative')
+                            <td style="color:red; font-weight:bold;">{{$data->prediction}}</td>
+                        @elseif($data->prediction =='Positive')
+                            <td style="color:green; font-weight:bold;">{{$data->prediction}}</td>
+                        @elseif($data->prediction =='Neutral')
+                            <td style="color:orange; font-weight:bold;">{{$data->prediction}}</td>
+                        @else
+                            <td>{{$data->prediction}}</td>
+                        @endif
                     </tr>
-
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>2023-03-11</td>
-                    <td>14:01:32</td>
-                    <td>S-132</td>
-                    <td>E-18</td>
-                    <td>David Juthushan</td>
-                    <td style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem.
-                        </td>
-                    <td style="font-weight: bold; color:blue;">Positive</td>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>2023-03-11</td>
-                    <td>14:01:32</td>
-                    <td>S-132</td>
-                    <td>E-18</td>
-                    <td>David Juthushan</td>
-                    <td style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem.
-                        </td>
-                    <td style="font-weight: bold; color:red;">Negative</td>
-                    </tr>
-
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>2023-03-11</td>
-                    <td>14:01:32</td>
-                    <td>S-132</td>
-                    <td>E-18</td>
-                    <td>David Juthushan</td>
-                    <td style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
-                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
-                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
-                        optio, eaque rerum! Provident similique accusantium nemo autem.
-                        </td>
-                    <td style="font-weight: bold; color:blue;">Positive</td>
-                    </tr>
-
-                    
+                    @endforeach      
+        
                 </tbody>
                 </table>
 
@@ -120,5 +74,37 @@
             
     </div>
 
+    <script>
+
+        window.onload = function(){
+      
+          if ("{{$type_of_search}}" == "[WHOLE_SEARCH]"){
+      
+            document.getElementById("date_picker").disabled = true;
+            document.getElementById("show_all_data").checked = true;
+      
+          }else if("{{$type_of_search}}" == "[DATE_WISE_SEARCH]"){
+      
+            document.getElementById("date_picker").disabled = false;
+            document.getElementById("search_by_date").checked = true;
+      
+          }
+      
+          document.getElementById("search_by_date").onclick = function(){
+      
+            document.getElementById("date_picker").disabled = false;
+      
+          }
+      
+          document.getElementById('date_picker').addEventListener('change', function() {
+            var selectedDate = this.value; // Get the selected date value
+            var url = "{{ route('AudioDataViewLink', ['search_by_date' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
+            url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
+            window.location.href = url; // Redirect to the updated URL
+        });
+      
+        }
+        
+      </script>
 
 @endsection

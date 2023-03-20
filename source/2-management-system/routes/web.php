@@ -25,7 +25,7 @@ Route::get('/home-page-view', [PageController::class, 'ViewHomePageFunction'])->
 
 Route::get('/vision-data-view/{search_by_date}', [PageController::class, 'ViewVisionDataFunction'])->name("VisionDataViewLink");
 
-Route::get('/audio-data-view', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
+Route::get('/audio-data-view/{search_by_date}', [PageController::class, 'ViewAudioDataFunction'])->name("AudioDataViewLink");
 
 Route::get('/settings-view', [PageController::class, 'ViewSettingsFunction'])->name("SettingsViewLink");
 

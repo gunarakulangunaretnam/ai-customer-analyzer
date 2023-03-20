@@ -59,13 +59,23 @@ class PageController extends Controller
         
     }
 
-    public function ViewAudioDataFunction(){
+    public function ViewAudioDataFunction(string $search_by_date){
         
         $login_access_session = Session::get('LoginAccess');
 
         if($login_access_session == '[TRUE]'){
 
-            return view('audio-data',['PageName' => 'Audio Data']); 
+            if($search_by_date == '[FALSE]'){
+
+                $whole_vision_data = DB::select('SELECT * FROM audio_data');
+                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[WHOLE_SEARCH]", "audio_data"=>$whole_vision_data]); 
+
+            }else{
+
+                $date_wise_vision_data = DB::select("SELECT * FROM audio_data where date = '$search_by_date'");
+                return view('audio-data',['PageName' => 'Audio Data',"type_of_search" => "[DATE_WISE_SEARCH]", "audio_data"=>$date_wise_vision_data]); 
+                
+            }
             
         }else{
 

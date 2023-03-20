@@ -58,7 +58,7 @@
             </li>
 
             <li class="nav-item {{ $PageName == 'Audio Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('AudioDataViewLink') }}" >
+                <a class="nav-link collapsed" href="{{ route('AudioDataViewLink', ['search_by_date' => '[FALSE]']) }}" >
                     <i class="fas fa-fw fa-music"></i>
                     <span>Audio Data</span>
                 </a>
