@@ -87,7 +87,7 @@ offset = 8
 width_and_hieght = 1000
 face_detection_offset = 20
 processing_status = False
-cap = cv2.VideoCapture(1) #Camera 
+cap = cv2.VideoCapture(0) #Camera 
 
 
 prototxtPath = r"data\models\deploy.prototxt"
@@ -227,45 +227,11 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 
-def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
+def database_updater(image_frame, image_url, mask, age, age_catagory, gender, emotion, race):
 
     data_date_and_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     _date = data_date_and_time.split(' ')[0].strip()
     _time =  data_date_and_time.split(' ')[1].strip()
-
-    age_catagory = ""
-
-    if age >= 0 and age <= 12:
-        age_catagory = "Kid"
-
-    elif age >= 13 and age <= 19:
-        age_catagory = "Teenage"
-
-    elif age >= 20 and age <= 64:
-        age_catagory = "Adult"
-
-    elif age >= 65 and age <= 100:
-        age_catagory = "Elder"
-
-
-    emotion_replaced = ""
-
-    if emotion.lower() == "fear":
-        emotion_replaced = "surprise"
-
-    else:
-        emotion_replaced = emotion
-
-
-    rece_replaced = ""
-
-    if race.lower() == "indian" or race.lower() == "latino hispanic" or race.lower() == "middle eastern":
-        rece_replaced = "asian"
-
-    else:
-        rece_replaced = race
-
-
 
     data = {
     'date': _date,
@@ -275,8 +241,8 @@ def database_updater(image_frame, image_url, mask, age, gender, emotion, race):
     'age': age,
     'age_catagory':age_catagory,
     'gender': gender.capitalize(),
-    'emotion':emotion_replaced.capitalize(),
-    'race': rece_replaced.capitalize()
+    'emotion':emotion.capitalize(),
+    'race': race.capitalize()
     }
 
     insert_query = ("INSERT INTO vision_data (date, time, image_url, mask, age, age_catagory, gender, emotion, race) "
@@ -319,13 +285,13 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
         age_catagory = "Elder"
 
 
-    emotion_replaced = ""
+    replaced_emotion = ""
 
     if predicted_emotion.lower() == "fear":
-        emotion_replaced = "surprise"
+        replaced_emotion = "surprise"
 
     else:
-        emotion_replaced = predicted_emotion
+        replaced_emotion = predicted_emotion
 
 
     rece_replaced = ""
@@ -343,7 +309,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     cv2.putText(frame, f'{current_time} ', (5, 40), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.putText(frame, f"Age: {str(predicted_age).capitalize()} ({age_catagory})", (coordinates['x']+coordinates['w']+10,coordinates['y']+30), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Gender: {str(predicted_gender).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+60), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
-    cv2.putText(frame, f"Emotion: {str(emotion_replaced).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv2.putText(frame, f"Emotion: {str(replaced_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Race: {str(rece_replaced).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     
     
@@ -351,7 +317,7 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
 
     print("Step 02: Image Saved Locally!")
 
-    database_updater(frame, "[NONE]", mask_data, predicted_age, predicted_gender, predicted_emotion, predicted_race)
+    database_updater(frame, "[NONE]", mask_data, predicted_age, age_catagory, predicted_gender, replaced_emotion, rece_replaced)
 
 def face_analyzer(frame, mask_detection_data, face_region):
 
