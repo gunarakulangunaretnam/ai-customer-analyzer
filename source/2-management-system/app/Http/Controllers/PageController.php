@@ -16,7 +16,7 @@ class PageController extends Controller
 
     }
 
-    public function ViewHomePageFunction(){
+    public function ViewHomePageFunction(string $search_by_month){
         
         $login_access_session = Session::get('LoginAccess');
 

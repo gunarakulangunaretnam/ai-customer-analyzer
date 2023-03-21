@@ -43,7 +43,7 @@ class AuthenticationController extends Controller
             # If password & username correct, redirect to home-page.blade.php
             if($login_access_session == '[TRUE]'){
 
-                return redirect()->route('HomePageViewLink');
+                return redirect()->route('HomePageViewLink', ['search_by_month' => '[FALSE]']);
             }
 
 

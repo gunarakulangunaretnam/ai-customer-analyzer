@@ -44,14 +44,14 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {{ $PageName == 'Home Page' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{ route('HomePageViewLink') }}">
+                <a class="nav-link collapsed" href="{{ route('HomePageViewLink', ['search_by_month' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-home"></i>
                     <span>Home Page</span>
                 </a>
             </li>
 
             <li class="nav-item {{ $PageName == 'Vision Data' ? 'active' : '' }}">
-                <a class="nav-link collapsed" href="{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]'])}}">
+                <a class="nav-link collapsed" href="{{route('VisionDataViewLink', ['search_by_date' => '[FALSE]']) }}">
                     <i class="fas fa-fw fa-video"></i>
                     <span>Vision Data</span>
                 </a>
