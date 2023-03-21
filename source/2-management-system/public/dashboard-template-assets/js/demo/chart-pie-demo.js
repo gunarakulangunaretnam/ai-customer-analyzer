@@ -109,6 +109,32 @@ for (let i = 0; i < mask_data.length; i++) {
 }
 
 
+
+var Asian = 0;
+var white = 0;
+var black = 0;
+var race_data = race_data; // mask_data called in the blade file
+
+
+for (let i = 0; i < race_data.length; i++) {
+   
+  if(race_data[i].race == "Asian"){ 
+
+      asian = race_data[i].count; 
+
+  }else if(race_data[i].race == "White"){
+
+      white = race_data[i].count; 
+
+  }else if(race_data[i].race == "Black"){
+
+    black = race_data[i].count; 
+
+  }
+
+}
+
+
 // Pie Chart Example
 var ctx = document.getElementById("gender-chart");
 var myPieChart = new Chart(ctx, {
@@ -247,7 +273,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ['Asian', 'White', 'Black'],
     datasets: [{
-      data: [55, 10, 23],
+      data: [asian, white, black],
       backgroundColor: ['#0220b7', '#f6e8c3', '#030001'],
       hoverBackgroundColor: ['#6d7cce', '#f9ecd6', '#4b4d4b'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
