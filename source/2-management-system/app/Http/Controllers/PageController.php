@@ -22,20 +22,31 @@ class PageController extends Controller
 
         if($login_access_session == '[TRUE]'){
 
+
+            $month_picker_display = "";
+
             if($search_by_month == '[FALSE]'){
 
-                $current_date = $current_year = date('Y')."-".$current_month = date('m')."-".$current_month = date('d');
-                $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY DAY(date) ORDER BY day ASC;");
-                $gender_data = DB::select("SELECT gender, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY gender;");
-                $age_group_data = DB::select("SELECT age_category, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY age_category;");
-                $emotion_data = DB::select("SELECT emotion, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY emotion;");
-                $mask_data = DB::select("SELECT mask, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY mask;");
-                $race_data = DB::select("SELECT race, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY race;");
-                $sentiment_data = DB::select("SELECT prediction, COUNT(*) AS count FROM audio_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY prediction;");
+                $search_data = $current_year = date('Y')."-".$current_month = date('m')."-".$current_month = date('d');
+                $month_picker_display = date('Y')."-".date('m');
+            }else{
 
-                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $traffic_data, "GenderData" => $gender_data, "AgeCategoryData" => $age_group_data, "EmotionData" => $emotion_data, "MaskData" => $mask_data, "RaceData" => $race_data, 'SentimentData' => $sentiment_data]); 
-       
+                $month_picker_display = $search_by_month;
+                $search_data = $search_by_month."-"."02";
+               
             }
+
+            
+            $traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY DAY(date) ORDER BY day ASC;");
+            $gender_data = DB::select("SELECT gender, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY gender;");
+            $age_group_data = DB::select("SELECT age_category, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY age_category;");
+            $emotion_data = DB::select("SELECT emotion, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY emotion;");
+            $mask_data = DB::select("SELECT mask, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY mask;");
+            $race_data = DB::select("SELECT race, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY race;");
+            $sentiment_data = DB::select("SELECT prediction, COUNT(*) AS count FROM audio_data WHERE MONTH(date) = MONTH('$search_data') AND YEAR(date) = YEAR('$search_data') GROUP BY prediction;");
+
+            return view('home-page',['PageName' => 'Home Page', "YearMonth" => $month_picker_display , 'TrafficData' => $traffic_data, "GenderData" => $gender_data, "AgeCategoryData" => $age_group_data, "EmotionData" => $emotion_data, "MaskData" => $mask_data, "RaceData" => $race_data, 'SentimentData' => $sentiment_data]); 
+   
 
             
             

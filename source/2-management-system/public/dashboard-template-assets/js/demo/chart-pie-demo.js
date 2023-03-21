@@ -6,6 +6,7 @@ var male = 0;
 var female = 0;
 var gender_data = gender_data; // gender_data called in the blade file
 
+
 for (let i = 0; i < gender_data.length; i++) {
    
   if(gender_data[i].gender == "Man"){

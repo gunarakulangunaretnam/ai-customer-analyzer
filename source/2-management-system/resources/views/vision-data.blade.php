@@ -94,7 +94,7 @@
       var url = "{{ route('VisionDataViewLink', ['search_by_date' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
       url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
       window.location.href = url; // Redirect to the updated URL
-  });
+    });
 
   }
   

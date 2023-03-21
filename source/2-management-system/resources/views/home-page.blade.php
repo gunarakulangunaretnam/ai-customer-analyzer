@@ -14,7 +14,7 @@
                     <div class="input-group-prepend">
                         <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Filter by Month:</span>
                     </div>
-                    <input type="month" value="{{$YearMonth}}" id="date_picker" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="month" value="{{$YearMonth}}" id="month_picker" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                 </div>
              </div>
         </div>
@@ -221,6 +221,18 @@
     var mask_data = {!! json_encode($MaskData) !!};
     var race_data = {!! json_encode($RaceData) !!};
     var sentiment_data = {!! json_encode($SentimentData) !!};
+
+    window.onload = function(){
+
+      document.getElementById('month_picker').addEventListener('change', function() {
+      var selectedDate = this.value; // Get the selected date value
+      var url = "{{ route('HomePageViewLink', ['search_by_month' => ':date']) }}"; // Define the URL with a placeholder for the date parameter
+      url = url.replace(':date', selectedDate); // Replace the placeholder with the selected date
+      window.location.href = url; // Redirect to the updated URL
+
+    });
+    }
+
 </script>
 
 @endsection
