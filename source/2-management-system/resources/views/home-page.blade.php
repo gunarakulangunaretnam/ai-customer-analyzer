@@ -215,6 +215,7 @@
     var gender_data = {!! json_encode($GenderData) !!};
     var age_category_data = {!! json_encode($AgeCategoryData) !!};
     var emotion_data = {!! json_encode($EmotionData) !!};
+    var mask_data = {!! json_encode($MaskData) !!};
 </script>
 
 @endsection

@@ -89,6 +89,25 @@ for (let i = 0; i < emotion_data.length; i++) {
   
 }
 
+var mask = 0;
+var non_mask = 0;
+var mask_data = mask_data; // mask_data called in the blade file
+
+
+for (let i = 0; i < mask_data.length; i++) {
+   
+  if(mask_data[i].mask == "Found"){
+
+      mask = mask_data[i].count; 
+
+  }else if(mask_data[i].mask == "Not Found"){
+
+      non_mask = mask_data[i].count; 
+
+  }
+
+}
+
 
 // Pie Chart Example
 var ctx = document.getElementById("gender-chart");
@@ -195,7 +214,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Mask", "Non-Masn"],
     datasets: [{
-      data: [55, 30],
+      data: [mask, non_mask],
       backgroundColor: ['#0220b7', '#f51c0c'],
       hoverBackgroundColor: ['#6d7cce', '#ff5a4d'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

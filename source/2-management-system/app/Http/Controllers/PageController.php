@@ -29,8 +29,9 @@ class PageController extends Controller
                 $gender_data = DB::select("SELECT gender, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY gender;");
                 $age_group_data = DB::select("SELECT age_category, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY age_category;");
                 $emotion_data = DB::select("SELECT emotion, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY emotion;");
+                $mask_data = DB::select("SELECT mask, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY mask;");
 
-                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $traffic_data, "GenderData" => $gender_data, "AgeCategoryData" => $age_group_data, "EmotionData" => $emotion_data]); 
+                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $traffic_data, "GenderData" => $gender_data, "AgeCategoryData" => $age_group_data, "EmotionData" => $emotion_data, "MaskData" => $mask_data]); 
        
             }
 
