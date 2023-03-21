@@ -28,7 +28,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 
-var traffic_data = mysqlData
+var traffic_data = traffic_data
 labels = []
 data = []
 

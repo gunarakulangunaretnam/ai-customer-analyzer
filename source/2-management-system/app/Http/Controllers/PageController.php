@@ -25,9 +25,11 @@ class PageController extends Controller
             if($search_by_month == '[FALSE]'){
 
                 $current_date = $current_year = date('Y')."-".$current_month = date('m')."-".$current_month = date('d');
-                $current_month_customer_traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') GROUP BY DAY(date) ORDER BY day ASC;");
+                $current_month_customer_traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY DAY(date) ORDER BY day ASC;");
+                $current_month_customer_gender_data = DB::select("SELECT gender, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY gender;");
+                $current_month_customer_age_group_data = DB::select("SELECT age_category, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') AND YEAR(date) = YEAR('$current_date') GROUP BY age_category;");
 
-                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $current_month_customer_traffic_data]); 
+                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $current_month_customer_traffic_data, "GenderData" => $current_month_customer_gender_data, "AgeCategoryData" => $current_month_customer_age_group_data]); 
        
             }
 

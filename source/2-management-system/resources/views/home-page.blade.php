@@ -207,7 +207,9 @@
 </div>
 
 <script>
-    var mysqlData = {!! json_encode($TrafficData) !!};
+    var traffic_data = {!! json_encode($TrafficData) !!};
+    var gender_data = {!! json_encode($GenderData) !!};
+    var age_category_data = {!! json_encode($AgeCategoryData) !!};
 </script>
 
 @endsection

@@ -2,6 +2,53 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+var male = 0;
+var female = 0;
+var gender_data = gender_data;
+
+for (let i = 0; i < gender_data.length; i++) {
+   
+  if(gender_data[i].gender == "Man"){
+
+      male = gender_data[i].count; 
+
+  }else if(gender_data[i].gender == "Woman"){
+
+      female = gender_data[i].count; 
+
+  }
+
+}
+
+var kid = 0;
+var teenage = 0;
+var adult = 0;
+var elder = 0;
+
+for (let i = 0; i < age_category_data.length; i++) {
+   
+  if(age_category_data[i].age_category == "Kid"){
+    
+      male = age_category_data[i].count; 
+
+  }else if(age_category_data[i].age_category == "Teenage"){
+  
+      teenage = age_category_data[i].count; 
+
+  }else if(age_category_data[i].age_category == "Adult"){
+  
+      adult = age_category_data[i].count; 
+
+  }else if(age_category_data[i].age_category == "Elder"){
+  
+      elder = age_category_data[i].count; 
+
+  }
+
+}
+
+
+
 // Pie Chart Example
 var ctx = document.getElementById("gender-chart");
 var myPieChart = new Chart(ctx, {
@@ -9,7 +56,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Male", "Female"],
     datasets: [{
-      data: [55, 30],
+      data: [male, female],
       backgroundColor: ['#430eef', '#e754a5'],
       hoverBackgroundColor: ['#5d38ff', '#f389bd'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
@@ -42,7 +89,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ['Kids', 'Teenagers', 'Adults', 'Elders'],
     datasets: [{
-      data: [55, 30,10,40],
+      data: [kid, teenage, adult, elder],
       backgroundColor: ['#0220b7', '#127542','#b2bc24', '#c25012'],
       hoverBackgroundColor: ['#6d7cce', '#169a5b', '#d4db4a', '#e96f3c'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
