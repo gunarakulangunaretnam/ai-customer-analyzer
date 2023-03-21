@@ -110,10 +110,10 @@ for (let i = 0; i < mask_data.length; i++) {
 
 
 
-var Asian = 0;
+var asian = 0;
 var white = 0;
 var black = 0;
-var race_data = race_data; // mask_data called in the blade file
+var race_data = race_data; // race_data called in the blade file
 
 
 for (let i = 0; i < race_data.length; i++) {
@@ -129,6 +129,31 @@ for (let i = 0; i < race_data.length; i++) {
   }else if(race_data[i].race == "Black"){
 
     black = race_data[i].count; 
+
+  }
+
+}
+
+
+var sentiment_positive = 0;
+var sentiment_negative = 0;
+var sentiment_neutral = 0;
+var sentiment_data = sentiment_data; // sentiment_data called in the blade file
+
+
+for (let i = 0; i < sentiment_data.length; i++) {
+   
+  if(sentiment_data[i].prediction == "Positive"){ 
+
+    sentiment_positive = sentiment_data[i].count; 
+
+  }else if(sentiment_data[i].prediction == "Negative"){
+
+    sentiment_negative = sentiment_data[i].count; 
+
+  }else if(sentiment_data[i].prediction == "Neutral"){
+
+    sentiment_neutral = sentiment_data[i].count; 
 
   }
 
@@ -306,11 +331,11 @@ var ctx = document.getElementById("sentiment_analysis");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ['Positive', 'Negative'],
+    labels: ['Positive', 'Negative', 'Neutral'],
     datasets: [{
-      data: [55, 70],
-      backgroundColor: ['#0220b7', '#fe3737'],
-      hoverBackgroundColor: ['#6d7cce', '#ff7070'],
+      data: [sentiment_positive, sentiment_negative, sentiment_neutral],
+      backgroundColor: ['#0220b7', '#fe3737', '#169a5b'],
+      hoverBackgroundColor: ['#6d7cce', '#ff7070', '#127542'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },

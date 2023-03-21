@@ -204,6 +204,9 @@
                     <span class="mr-2">
                         <i class="fas fa-circle" style="color:#fe3737;"></i> Negative
                     </span>
+                    <span class="mr-2">
+                        <i class="fas fa-circle" style="color:#169a5b;"></i> Neutral
+                    </span>
                 </div>
             </div>
         </div>
@@ -217,6 +220,7 @@
     var emotion_data = {!! json_encode($EmotionData) !!};
     var mask_data = {!! json_encode($MaskData) !!};
     var race_data = {!! json_encode($RaceData) !!};
+    var sentiment_data = {!! json_encode($SentimentData) !!};
 </script>
 
 @endsection
