@@ -22,7 +22,14 @@ class PageController extends Controller
 
         if($login_access_session == '[TRUE]'){
 
-            return view('home-page',['PageName' => 'Home Page']); 
+            if($search_by_month == '[FALSE]'){
+
+                $current_year_month = $current_year = date('Y')."-".$current_month = date('m');
+                return view('home-page',['PageName' => 'Home Page', "YearMonth" => $current_year_month]); 
+       
+            }
+
+            
             
         }else{
 

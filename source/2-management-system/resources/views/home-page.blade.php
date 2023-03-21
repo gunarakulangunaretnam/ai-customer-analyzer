@@ -14,7 +14,7 @@
                     <div class="input-group-prepend">
                         <span style="font-weight: bold;" class="input-group-text" id="inputGroup-sizing-sm">Filter by Month:</span>
                     </div>
-                    <input type="month" id="date_picker" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                    <input type="month" value="{{$YearMonth}}" id="date_picker" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
                 </div>
              </div>
         </div>
