@@ -27,12 +27,22 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
+
+var traffic_data = mysqlData
+labels = []
+data = []
+
+for (let i = 0; i < traffic_data.length; i++) {
+  labels.push("Day: " + traffic_data[i].day);
+  data.push(traffic_data[i].count);
+}
+
 // Area Chart Example
 var ctx = document.getElementById("customer-chart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Day: 1", "Day: 2", "Day: 3", "Day: 4", "Day: 5", "Day: 6", "Day: 7", "Day: 8", "Day: 9", "Day: 10", "Day: 11", "Day: 12","Day: 13","Day: 14","Day: 15","Day: 16","Day: 17","Day: 18","Day: 19","Day: 20","Day: 21","Day: 22","Day: 23","Day: 24","Day: 25","Day: 26","Day: 27","Day: 28","Day: 29","Day: 30","Day: 31"],
+    labels: labels,
     datasets: [{
       label: "Customers: ",
       lineTension: 0.3,
@@ -46,7 +56,7 @@ var myLineChart = new Chart(ctx, {
       pointHoverBorderColor: "rgba(78, 115, 223, 1)",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [4,2,2,3,4,5,6,7,8,9,8,12,23,42,32,2,1,23,4,43,54,56,76,87,5,43,32,2,1,23,32],
+      data: data,
     }],
   },
   options: {

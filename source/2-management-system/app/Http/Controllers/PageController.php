@@ -24,8 +24,10 @@ class PageController extends Controller
 
             if($search_by_month == '[FALSE]'){
 
-                $current_year_month = $current_year = date('Y')."-".$current_month = date('m');
-                return view('home-page',['PageName' => 'Home Page', "YearMonth" => $current_year_month]); 
+                $current_date = $current_year = date('Y')."-".$current_month = date('m')."-".$current_month = date('d');
+                $current_month_customer_traffic_data = DB::select("SELECT DAY(date) AS day, COUNT(*) AS count FROM vision_data WHERE MONTH(date) = MONTH('$current_date') GROUP BY DAY(date) ORDER BY day ASC;");
+
+                return view('home-page',['PageName' => 'Home Page', "YearMonth" => date('Y')."-".date('m'), 'TrafficData' => $current_month_customer_traffic_data]); 
        
             }
 

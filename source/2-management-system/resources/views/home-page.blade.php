@@ -206,4 +206,8 @@
     </div>
 </div>
 
+<script>
+    var mysqlData = {!! json_encode($TrafficData) !!};
+</script>
+
 @endsection
