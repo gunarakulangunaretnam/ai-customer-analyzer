@@ -120,6 +120,10 @@
                         </span>
 
                         <span class="mr-2">
+                            <i class="fas fa-circle" style="color:#81695d;"></i> Fear
+                        </span>
+
+                        <span class="mr-2">
                             <i class="fas fa-circle" style="color:#386772;"></i> Surprise
                         </span>
 
@@ -210,6 +214,7 @@
     var traffic_data = {!! json_encode($TrafficData) !!};
     var gender_data = {!! json_encode($GenderData) !!};
     var age_category_data = {!! json_encode($AgeCategoryData) !!};
+    var emotion_data = {!! json_encode($EmotionData) !!};
 </script>
 
 @endsection

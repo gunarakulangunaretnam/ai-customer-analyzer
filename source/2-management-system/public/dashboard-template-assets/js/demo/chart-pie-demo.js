@@ -4,7 +4,7 @@ Chart.defaults.global.defaultFontColor = '#858796';
 
 var male = 0;
 var female = 0;
-var gender_data = gender_data;
+var gender_data = gender_data; // gender_data called in the blade file
 
 for (let i = 0; i < gender_data.length; i++) {
    
@@ -25,11 +25,13 @@ var teenage = 0;
 var adult = 0;
 var elder = 0;
 
+var age_category_data = age_category_data; // age_category_data called in the blade file
+
 for (let i = 0; i < age_category_data.length; i++) {
    
   if(age_category_data[i].age_category == "Kid"){
     
-      male = age_category_data[i].count; 
+      kid = age_category_data[i].count; 
 
   }else if(age_category_data[i].age_category == "Teenage"){
   
@@ -47,6 +49,45 @@ for (let i = 0; i < age_category_data.length; i++) {
 
 }
 
+var neutral = 0;
+var happy = 0;
+var sad = 0;
+var angry = 0;
+var fear = 0;
+var surprise = 0;
+var emotion_data = emotion_data; // emotion_data called in the blade file
+
+
+
+for (let i = 0; i < emotion_data.length; i++) {
+   
+  if(emotion_data[i].emotion == "Neutral"){
+    
+      neutral = emotion_data[i].count; 
+
+  }else if(emotion_data[i].emotion == "Happy"){
+  
+      happy = emotion_data[i].count; 
+
+  }else if(emotion_data[i].emotion == "Sad"){
+  
+      sad = emotion_data[i].count; 
+
+  }else if(emotion_data[i].emotion == "Angry"){
+  
+      angry = emotion_data[i].count; 
+
+  }else if(emotion_data[i].emotion == "Fear"){
+  
+      fear = emotion_data[i].count; 
+
+  }else if(emotion_data[i].emotion == "Surprise"){
+  
+      surprise = emotion_data[i].count; 
+
+  }
+  
+}
 
 
 // Pie Chart Example
@@ -119,11 +160,11 @@ var ctx = document.getElementById("emotion");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ['Natural', 'Happy', 'Sad', 'Angery', 'Surprise'],
+    labels: ['Neutral', 'Happy', 'Sad', 'Angery', 'Fear', 'Surprise'],
     datasets: [{
-      data: [55, 30,10,40,10],
-      backgroundColor: ['#0220b7', '#127542','#030400', '#ee1616', '#81695d', '#386772', '#5ec37c;'],
-      hoverBackgroundColor: ['#6d7cce', '#169a5b', '#4b4d4b', '#ff3838', '#a28b7e', '#57849c', '#82e29f'],
+      data: [neutral, happy, sad, angry, fear ,surprise], 
+      backgroundColor: ['#0220b7', '#127542','#030400', '#ee1616', '#81695d', '#386772' ],
+      hoverBackgroundColor: ['#6d7cce', '#169a5b', '#4b4d4b', '#ff3838', '#a28b7e', '#57849c'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
     }],
   },
