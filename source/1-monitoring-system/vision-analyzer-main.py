@@ -27,6 +27,7 @@ import datetime
 import threading
 import numpy as np
 import mysql.connector
+from ftplib import FTP
 import tensorflow as tf
 from deepface import DeepFace
 from imutils.video import VideoStream
@@ -59,6 +60,24 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 ### END DATABASE CONNECTION ###
+
+### START FTP CONNECTION ###
+
+ftp_host = ""
+ftp_username = ""
+ftp_password = ""
+
+
+with open("data\\ftp-credentials.json") as ftp_file:
+    config_data = json.load(ftp_file)
+
+    # Access the values from the dictionary
+    ftp_host = config_data['ftp_host']
+    ftp_username = config_data['ftp_username']
+    ftp_password = config_data['ftp_password']
+
+### END FTP CONNECTION ###
+
 
 
 ### START GET TOTOAL NUMBER OF COUNTING OF THE DAY ###
@@ -227,6 +246,19 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 			return label
 
 
+def upload_image_to_server_ftp(image):
+    try:  
+        ftp = FTP(ftp_host)
+        ftp.login(user=ftp_username, passwd=ftp_password)
+        ftp.sendcmd("TYPE I")
+        with open(f"predictions/{image}", "rb") as f:
+            ftp.storbinary(f"STOR {image}", f)
+            print("Step 03: Image Uploaded Remotely!")
+
+    except Exception as e:
+        print(f"FTP Image Upload Failed: {e}")
+
+
 def database_updater(image_frame, image_url, mask, age, age_category, gender, emotion, race):
 
     data_date_and_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -250,8 +282,6 @@ def database_updater(image_frame, image_url, mask, age, age_category, gender, em
 
     mycursor.execute(insert_query, data)
     mydb.commit()
-
-    print("Step 03: Image Uploaded Remotely!")
 
     # Here Call FTP function that uploads the image to the server
 
@@ -312,12 +342,16 @@ def image_saver(frame, coordinates, mask_data, predicted_age, predicted_gender, 
     cv2.putText(frame, f"Emotion: {str(replaced_emotion).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+90), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     cv2.putText(frame, f"Race: {str(rece_replaced).capitalize()}", (coordinates['x']+coordinates['w']+10,coordinates['y']+120), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
     
+
+    image_name = uuid.uuid4()
     
-    cv2.imwrite(f"predictions/{uuid.uuid4()}.jpg",frame)
+    cv2.imwrite(f"predictions/{image_name}.jpg",frame)
 
     print("Step 02: Image Saved Locally!")
 
-    database_updater(frame, "[NONE]", mask_data, predicted_age, age_category, predicted_gender, replaced_emotion, rece_replaced)
+    upload_image_to_server_ftp(f"{image_name}.jpg")
+    database_updater(frame, f"{image_name}.jpg", mask_data, predicted_age, age_category, predicted_gender, replaced_emotion, rece_replaced)
+
 
 def face_analyzer(frame, mask_detection_data, face_region):
 
