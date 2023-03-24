@@ -51,7 +51,7 @@
                   <td>{{ $data->auto_id }}</td>
                   <td>{{ $data->date }}</td>
                   <td>{{ $data->time }}</td>
-                  <td>{{ $data->image_url }}</td>
+                  <td style="text-align: center;"><a target="_blank" href="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}"><img src="{{ asset('dashboard-template-assets/predictions/' . $data->image_url) }}" style="width:60%; border-radius:5%;"></a></td>
                   <td>{{ $data->mask }}</td>
                   <td>{{ $data->age }}</td>
                   <td>{{ $data->age_category}}</td>
