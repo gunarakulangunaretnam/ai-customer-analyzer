@@ -87,7 +87,7 @@ offset = 8
 width_and_hieght = 1000
 face_detection_offset = 20
 processing_status = False
-cap = cv2.VideoCapture(0) #Camera 
+cap = cv2.VideoCapture(1) #Camera 
 
 
 prototxtPath = r"data\models\deploy.prototxt"
