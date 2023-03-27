@@ -17,7 +17,7 @@ The Monitoring System is the AI-powered part that captures and predicts customer
 
 The Management System is part of the system administrators use to analyze the data collected by the Monitoring System. It provides an easy-to-use interface that allows administrators to access real-time data insights and trends about their customer base. The Management System enables retailers to understand their customers better and make data-driven decisions to improve customer experience and drive revenue growth.
 
-Overall, the "AI Customer Analyzer" system provides an end-to-end solution for retailers to gain real-time insights into their customer base. The Monitoring System captures and predicts customer information, while the Management System provides a user-friendly interface for administrators to analyze and act upon the data collected. With this powerful combination of technologies, retailers can take their customer analysis to the next level and gain a competitive advantage in the retail industry.
+The "AI Customer Analyzer" system provides an end-to-end solution for retailers to gain real-time insights into their customer base. The Monitoring System captures and predicts customer information, while the Management System provides a user-friendly interface for administrators to analyze and act upon the data collected. With this powerful combination of technologies, retailers can take their customer analysis to the next level and gain a competitive advantage in the retail industry.
 
 ## System Features
 
@@ -40,7 +40,7 @@ Overall, the "AI Customer Analyzer" system provides an end-to-end solution for r
 - There is a line chart on the dashboard to plot the traffics of customers.
 - Many pie charts on the dashboard show age groups, genders, emotions, sentiments, and races in a graphical way.
 - A page called "Vision Data." stores information about the customer, such as date, time, customer image, emotion, race, gender, age, age group, etc.; it has a filtering option where the admin can search based on dates.
-- An "Audio Data" page stores information about the conversations between sales customers and employees, such as the sentiment of their negative, positive, and neutral speeches.
+- An "Audio Data" page stores information about the conversations between sales employees and customers, such as the sentiment of their negative, positive, and neutral speeches.
 - Able to change the password of the management system.
 
 **Note:** The monitoring system works as it is named and stores those prediction data in the database to be accessed by the management system for further analysis.
