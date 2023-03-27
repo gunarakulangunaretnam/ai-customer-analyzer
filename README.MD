@@ -431,6 +431,34 @@ https://user-images.githubusercontent.com/45822509/228026260-51818429-ebc6-44a1-
 
 ### Management System
 
-```
+#### Login Page
 
-```
+![Login Page](docs/github-readme-content/13-login-page.jpg)
+
+#### Home Page
+
+![Home Page 1](docs/github-readme-content/14-home-page.jpg)
+
+![Home Page 2](docs/github-readme-content/15-home-page.jpg)
+
+#### Vision Data Page
+
+![Vision Data Page 1](docs/github-readme-content/16-video-data-page.jpg)
+
+![Vision Data Page 2](docs/github-readme-content/17-video-data-page.jpg)
+
+#### Audio Data Page
+
+![Vision Data Page 1](docs/github-readme-content/18-audio-data-page.jpg)
+
+#### Settings
+
+![Vision Data Page 1](docs/github-readme-content/19-settings-page.jpg)
+
+## Social Media Links
+
+- [Linkedin Profile](https://www.linkedin.com/in/gunarakulangunaretnam/)
+- [Facebook Page](https://www.facebook.com/gunarakulangunaretnam)
+- [Twitter Profile](https://twitter.com/gunarakulan)
+- [Instagram Profile](https://www.instagram.com/gunarakulangunaretnam/)
+- [Youtube Channel](https://www.youtube.com/channel/UCMWkED5sabgVZSCKjZuRJXA)
