@@ -247,6 +247,18 @@ Python is the primary programming language used in this project; earlier, we use
     pip install deepface==0.0.79
   ```
 
+- Install textblob
+
+  ```
+    pip install textblob==0.17.1
+  ```
+
+- Install Speech Recognition
+
+  ```
+    pip install SpeechRecognition==3.9.0
+  ```
+
 **IMPORTANT:** After the installation of all the dependencies one by one, the next step is to set up the management system. Otherwise, the monitoring system won't work without the database being configured.
 
 ### Setup Management System
@@ -310,3 +322,51 @@ ai-customer-analyzer\source\1-monitoring-system\data\ftp-credentials.json
 ```
 
 ![FTP Credentials](docs/github-readme-content/6-ftp-credentials.jpg)
+
+## Execution
+
+This section shows how to run the monitoring system and the management system.
+
+### Execution of Monitoring System
+
+The monitoring system can be found on the following directory, "1-monitoring-system", the folder can copied to any place that it wants to be deployed.
+
+```
+ai-customer-analyzer/source/1-monitoring-system
+```
+
+- Step 01: Activate the environment (**Note:** if there is no environment created, no need to activate)
+
+```
+  activate ai_customer_analyzer
+```
+
+- Step 02: Execute the vision-analyzer-main.py script
+
+```
+  python vision-analyzer-main.py
+```
+
+### Execution of Audio Processing Script (Monitoring System)
+
+- Step 01: Activate the environment (**Note:** if there is no environment created, no need to activate)
+
+```
+  activate ai_customer_analyzer
+```
+
+- Step 02: Execute the audio-analyzer-main.py script
+
+```
+  python audio-analyzer-main.py
+```
+
+### Execution of Management System
+
+The management system can be opened using a web browser; it is based on where it is deployed; if it is deployed on localhost, it can be accessed by http://localhost/ and navigate to the **public** folder.
+
+## Demonstration
+
+This section shows demos of the projects on the monitoring and management systems; some screenshots of the project are attached below.
+
+## Monitoring System
