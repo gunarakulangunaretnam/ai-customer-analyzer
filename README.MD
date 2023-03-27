@@ -195,7 +195,7 @@ This method shows how to install dependencies manually; the previous method of i
 Python is the primary programming language used in this project; earlier, we used Anaconda; the difference between Anaconda and Python is, Anaconda is a distribution of the Python programming language that comes bundled with a set of pre-installed packages and tools for scientific computing and data science. But Python is a general-purpose programming language; In summary, Python is a programming language; Anaconda is a distribution of Python that includes pre-installed packages and tools specifically for scientific computing and data science.
 
 - Official Website Python: https://www.python.org/
-- Official Website Python: https://www.anaconda.com/
+- Official Website Anaconda: https://www.anaconda.com/
 
 #### **Step 02: Install the following dependencies using PIP**
 
