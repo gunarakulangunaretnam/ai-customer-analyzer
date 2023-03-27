@@ -407,17 +407,17 @@ This section shows demos of the projects on the monitoring and management system
 
 https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-b397-f64b9c43128f.mp4
 
-#### Output
+### 02 Monitoring System with Images (Testing)
+
+https://user-images.githubusercontent.com/45822509/228018476-1850c169-99a1-4a7a-888a-409fe436ce6a.mp4
+
+#### Output Monitoring System
 
 ![Demo Image 1](docs/github-readme-content/7-demo-image-1.jpg)
 
 ![Demo Image 2](docs/github-readme-content/8-demo-image-2.jpg)
 
-### 02 Monitoring System with Images (Testing)
-
-https://user-images.githubusercontent.com/45822509/228018476-1850c169-99a1-4a7a-888a-409fe436ce6a.mp4
-
-#### Output
+#### Output Monitoring System with Images (Testing)
 
 ![Demo Image 4](docs/github-readme-content/10-demo-image-4.jpg)
 
