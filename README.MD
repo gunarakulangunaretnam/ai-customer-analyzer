@@ -100,6 +100,8 @@ The following system flow diagram explains how the AI Customer Analyzer system f
 └── README.MD                             # Readme file.
 ```
 
+**IMPORTANT:** The soruce code of **Monitoring System** and **Management System** are found under the **soruce** folder.
+
 ## Setup
 
 This section explains how to deploy AI Customer Analyzer on a new computer. The system has two components: **Monitoring System** and **Management System**.
