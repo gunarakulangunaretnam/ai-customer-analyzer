@@ -415,6 +415,10 @@ https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-
 
 ### Monitoring System with Images (Testing)
 
+https://user-images.githubusercontent.com/45822509/228018476-1850c169-99a1-4a7a-888a-409fe436ce6a.mp4
+
+#### Output
+
 ![Demo Image 3](docs/github-readme-content/9-demo-image-3.jpg)
 
 ![Demo Image 4](docs/github-readme-content/10-demo-image-4.jpg)
