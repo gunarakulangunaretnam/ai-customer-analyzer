@@ -79,3 +79,78 @@ The following system flow diagram explains how the AI Customer Analyzer system f
 | **Pygame**          | Ver: 2.2.0    |
 | **imutils**         | Ver: 0.5.4    |
 | **deepface**        | Ver: 0.0.79   |
+
+## Setup
+
+This section explains how to deploy AI Customer Analyzer on a new computer. The system has two components: **Monitoring System** and **Management System**.
+
+### Setup Monitoring System
+
+To set up the monitoring system, two methods are available: installing all the required dependencies from the requirements.yml file using the Anaconda environment, and the other way is installing dependencies one by one. So, the easiest way to install is using the requirements.yml method, which helps install the monitoring system without errors. However, this section covers both scenarios, installing manually and from the requirements.yml file.
+
+#### **Method 1: Install using Anaconda Environment (Easy Method)**
+
+This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors.Follow the steps outlined below to install the monitoring system easily.
+
+#### **Step 01: Install Anaconda**
+
+The first step is to install Anaconda on the deployed computer: Anaconda is a free and open-source distribution of the Python programming language and a collection of pre-built packages and tools for data science and machine learning. It includes a package manager called "conda" that simplifies the installation and management of packages and dependencies.
+
+- Official Website: https://www.anaconda.com/
+
+#### **Step 02: Navigate to the requirements.yml file directory**
+
+The requirements.yml file is found under this project folder; it could be in the following directory named "monitoring-system-requirements.yml". Navigate to that directory in CMD.
+
+```
+ai-customer-analyzer\source\0-resources\1-requirements\monitoring-system-requirements.yml
+```
+
+- **The requirements file link:** **[monitoring-system-requirements.yml](source\0-resources\1-requirements\monitoring-system-requirements.yml)**
+
+#### **Step 03: Install the requirements**
+
+**To Install:** After the navigation to the above directory in CMD then issue the following command to install it; An example screenshot is shown below.
+
+```
+ conda env create -f monitoring-system-requirements.yml
+```
+
+- Example screenshot:
+
+- <img src="docs/github-readme-content/3-install-using-anaconda-env.jpg" alt="Install using Anaconda Environment" width="700" height="500" style="border: 1px solid black;">
+
+**IMPORTANT:** It will take some time to install all the dependencies automatically; after the installation, an environment will be created with the name "ai_customer_analyzer" that environment contains all the required libraries; when running the AI Customer Analyzer project, **always make sure to activate that environment** which has necessary libraries.
+
+**To activate:** Use the following command.
+
+```
+activate ai_customer_analyzer
+```
+
+**Note:** After the activation, the project can be run on top of that environment.
+
+#### Additional Information
+
+There is some additional information below to learn more about the Anaconda environment.
+
+- To Install Anaconda Environment
+
+```
+  conda env create -f environment.yml
+
+```
+
+- To Export Anaconda Environment
+
+```
+  conda env export > environment.yml
+
+```
+
+- To Delete Anaconda Environment
+
+```
+  conda env remove -n ENV_NAME
+
+```
