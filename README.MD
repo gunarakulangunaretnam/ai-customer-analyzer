@@ -421,7 +421,7 @@ https://user-images.githubusercontent.com/45822509/228018476-1850c169-99a1-4a7a-
 
 #### Output Monitoring System with Images (Testing)
 
-![Demo Image 3](docs/github-readme-content/9-demo-image-3.jpg)
+![Demo Image 3](docs/github-readme-content/10-demo-image-4.jpg)
 
 ![Demo Image 5](docs/github-readme-content/11-demo-image-5.jpg)
 
