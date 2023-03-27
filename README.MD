@@ -42,3 +42,9 @@ Overall, the "AI Customer Analyzer" system provides an end-to-end solution for r
 - Able to change the password of the management system.
 
 **Note:** The monitoring system works as it is named and stores those prediction data in the database to be accessed by the management system for further analysis.
+
+### Architecture Diagram
+
+The following architecture diagram explains how this AI Customer Analyzer functions; it typically includes various components and stages that work together to analyze customer data and generate insights. Here is a breakdown of each element and its function:
+
+![Architecture Diagram](docs/github-readme-content/1-architecture-diagram.png)
