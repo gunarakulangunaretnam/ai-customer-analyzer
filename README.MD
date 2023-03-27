@@ -134,7 +134,7 @@ The requirements.yml file is found under this project folder; it could be in the
 ai-customer-analyzer\source\0-resources\1-requirements\monitoring-system-requirements.yml
 ```
 
-- **The requirements file link:** **[monitoring-system-requirements.yml](source\0-resources\1-requirements\monitoring-system-requirements.yml)**
+- **The requirements file link:** **[monitoring-system-requirements.yml](source/0-resources/1-requirements/monitoring-system-requirements.yml)**
 
 #### **Step 03: Install the requirements**
 
