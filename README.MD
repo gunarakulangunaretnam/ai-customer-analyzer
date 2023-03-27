@@ -411,6 +411,8 @@ https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-
 
 https://user-images.githubusercontent.com/45822509/228018476-1850c169-99a1-4a7a-888a-409fe436ce6a.mp4
 
+### 03 Audio Processing (Monitoring System)
+
 #### Output Monitoring System
 
 ![Demo Image 1](docs/github-readme-content/7-demo-image-1.jpg)
