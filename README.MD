@@ -118,7 +118,7 @@ ai-customer-analyzer/source/1-monitoring-system
 
 #### **Method 1: Install using Anaconda Environment (Easy Method)**
 
-This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors.Follow the steps outlined below to install the monitoring system easily.
+This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors. Follow the steps outlined below to install the monitoring system easily.
 
 #### **Step 01: Install Anaconda**
 
