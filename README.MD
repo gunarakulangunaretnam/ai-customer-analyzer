@@ -48,3 +48,9 @@ Overall, the "AI Customer Analyzer" system provides an end-to-end solution for r
 The following architecture diagram explains how this AI Customer Analyzer functions; it typically includes various components and stages that work together to analyze customer data and generate insights. Here is a breakdown of each element and its function:
 
 ![Architecture Diagram](docs/github-readme-content/1-architecture-diagram.png)
+
+### System Flow Diagram
+
+The following system flow diagram explains how the AI Customer Analyzer system flows to analyze customer data and generate insights; it goes through various components to analyze the data using computer vision algorithms and natural language processing techniques then it produces insights data that help businesses understand customer behavior and preferences.
+
+![Architecture Diagram](docs/github-readme-content/2-system-flow-digram.png)
