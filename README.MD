@@ -247,7 +247,7 @@ Python is the primary programming language used in this project; earlier, we use
     pip install deepface==0.0.79
   ```
 
-- Install textblob
+- Install TextBlob
 
   ```
     pip install textblob==0.17.1
@@ -401,7 +401,7 @@ The management system can be opened using a web browser; it is based on where it
 
 ## Demonstration
 
-This section shows demos of the projects on the monitoring and management systems; some screenshots of the project are attached below.
+This section shows demos of the projects on the monitoring and management systems; some screenshots and demo videos of the project are given below.
 
 ### 01 Monitoring System
 
