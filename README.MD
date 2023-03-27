@@ -80,6 +80,26 @@ The following system flow diagram explains how the AI Customer Analyzer system f
 | **imutils**         | Ver: 0.5.4    |
 | **deepface**        | Ver: 0.0.79   |
 
+## Repo Structure
+
+```text
+.
+├── docs                                  # Documents Folder.
+│   ├── github-readme-content                 # Contains GitHub Readme Content.
+│   └── project-documentations                # Contains Project-related Documents.
+├── research                              # Contains Research files
+│   ├── management-panel-template             # Template of Management System in HTML/CSS
+│   ├── test-images-monitoring-system         # Monitoring System that can be tested with images instead of Camera.
+│   ├── database-structure.txt                # Database Structure
+│   └── google-gtts.py                        # Text to Speech Python Script File
+├── source                                # Contains Source Code (Main Project Folder)
+│   ├── 0-resources                           # Contains resources: database, requirements.yml
+│   ├── 1-monitoring-system                   # Contains Monitoring System Project
+│   └── 1-management-system                   # Contains Management System Project
+├── LICENCE                               # Licence File.
+└── README.MD                             # Readme file.
+```
+
 ## Setup
 
 This section explains how to deploy AI Customer Analyzer on a new computer. The system has two components: **Monitoring System** and **Management System**.
