@@ -110,6 +110,12 @@ This section explains how to deploy AI Customer Analyzer on a new computer. The 
 
 To set up the monitoring system, two methods are available: installing all the required dependencies from the requirements.yml file using the Anaconda environment, and the other way is installing dependencies one by one. So, the easiest way to install is using the requirements.yml method, which helps install the monitoring system without errors. However, this section covers both scenarios, installing manually and from the requirements.yml file.
 
+**IMPORTANT:** The soruce code of the monitoring system is found under the following directory
+
+```
+ai-customer-analyzer/source/1-monitoring-system
+```
+
 #### **Method 1: Install using Anaconda Environment (Easy Method)**
 
 This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors.Follow the steps outlined below to install the monitoring system easily.
@@ -244,3 +250,63 @@ Python is the primary programming language used in this project; earlier, we use
 **IMPORTANT:** After the installation of all the dependencies one by one, the next step is to set up the management system. Otherwise, the monitoring system won't work without the database being configured.
 
 ### Setup Management System
+
+This section explains how to set up the management system. It is built with Laravel and can be configured quickly on shared hosting or any apache-based servers that run on PHP.
+
+To host it locally on a computer, XAMPP control panel can be used for that. XAMPP is a free and open-source cross-platform web server solution stack package developed by Apache Friends; we can use it for local deployment of PHP-based projects.
+
+Official Website: https://www.apachefriends.org/
+
+**IMPORTANT 1:** The soruce code of the management system is found under the following directory
+
+```
+ai-customer-analyzer/source/2-management-system
+```
+
+**IMPORTANT 2:** Projects that are built with Laravel can be accessed by opening the **public** folder, in the source code of management system, there is a folder called public, if that opened, it could be accessed, otherwise it won't work, when deploying on servers, it is very important to point to that folder instead of pointing on index.php/index.html.
+
+### Setup Database
+
+The monitoring and management systems use the same database to communicate with each other. Therefore, setting up the database first is essential to make both systems work successfully.
+
+To set the database locally, we can use the XAMPP control panel; there is a MySQL database engine and PHPMyAdmin with it. The database can be found on the following directory.
+
+```
+ai-customer-analyzer/source/0-resources/ai_customer_analyzer.sql
+```
+
+**IMPORTANT:** Give the database name as **ai_customer_analyzer**.
+
+![MySQL Database](docs/github-readme-content/4-mysql-database-setup.jpg)
+
+### Configuring Database with Monitoring System
+
+This step configures the database with the monitoring system; suppose the database is hosted remotely. Letting the monitoring system know the credentials and the host is essential. Open the JSON file in the following directory to provide the database credentials and host information.
+
+```
+ai-customer-analyzer/source/1-monitoring-system/data/database-credentials.json
+```
+
+![MySQL Database Credentials](docs/github-readme-content/5-database-credentials-json.jpg)
+
+**IMPORTANT:** During the running time of the monitoring system, it sends captured information to this database; if the database is hosted somewhere other than localhost, it is important to edit this file.
+
+### Configuring FTP with Monitoring System
+
+When the monitoring system captures images, it uses FTP to send those images to the management panel. Therefore, setting up an FTP account with the monitoring system is essential.
+
+**IMPORTANT 1:** Create an FTP account and point that FTP account to the following directory of the management system; the path is given below.
+
+```
+2-management-system\public\dashboard-template-assets\predictions
+```
+
+**IMPORTANT 2:** If this project is set up locally, then local FTP server can be used, there are many local FTP servers such as open-source **Filezilla server**.
+
+**IMPORTANT 3:** There is an FTP credentials JSON file in the following directory; edit that file to change the FTP credentials.
+
+```
+ai-customer-analyzer\source\1-monitoring-system\data\ftp-credentials.json
+```
+
+![FTP Credentials](docs/github-readme-content/6-ftp-credentials.jpg)
