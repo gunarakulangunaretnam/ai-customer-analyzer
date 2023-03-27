@@ -19,6 +19,8 @@ The Management System is part of the system administrators use to analyze the da
 
 Overall, the "AI Customer Analyzer" system provides an end-to-end solution for retailers to gain real-time insights into their customer base. The Monitoring System captures and predicts customer information, while the Management System provides a user-friendly interface for administrators to analyze and act upon the data collected. With this powerful combination of technologies, retailers can take their customer analysis to the next level and gain a competitive advantage in the retail industry.
 
+## System Features
+
 ### Monitoring System Features
 
 - Able to count customers.
@@ -54,3 +56,26 @@ The following architecture diagram explains how this AI Customer Analyzer functi
 The following system flow diagram explains how the AI Customer Analyzer system flows to analyze customer data and generate insights; it goes through various components to analyze the data using computer vision algorithms and natural language processing techniques then it produces insights data that help businesses understand customer behavior and preferences.
 
 ![Architecture Diagram](docs/github-readme-content/2-system-flow-digram.png)
+
+## Technology Stack
+
+### Primary Programming Tools
+
+| Programming Tools | Version     | Description                     |
+| ----------------- | ----------- | ------------------------------- |
+| **Python**        | Ver: 3.9    | Use to build monitoring system. |
+| **MySQL**         | Ver: 15.1   | Used as central database.       |
+| **Laravel**       | Ver: 10.3.3 | Use to build management system. |
+
+### Python Dependencies (Monitoring System)
+
+| Programming Tools   | Version       |
+| ------------------- | ------------- |
+| **TensorFlow**      | Ver: 2.11.0   |
+| **Keras**           | Ver: 2.11.0   |
+| **OpenCV**          | Ver: 4.7.0.68 |
+| **MySQL Connector** | Ver: 2.2.9    |
+| **PyAudio**         | Ver: 0.2.13   |
+| **Pygame**          | Ver: 2.2.0    |
+| **imutils**         | Ver: 0.5.4    |
+| **deepface**        | Ver: 0.0.79   |
