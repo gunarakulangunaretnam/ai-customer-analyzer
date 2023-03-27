@@ -373,3 +373,16 @@ This section shows demos of the projects on the monitoring and management system
 
 https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-b397-f64b9c43128f.mp4
 
+#### Output
+
+![Demo Image 1](docs/github-readme-content/7-demo-image-1.jpg)
+
+![Demo Image 2](docs/github-readme-content/8-demo-image-2.jpg)
+
+![Demo Image 3](docs/github-readme-content/9-demo-image-3.jpg)
+
+![Demo Image 4](docs/github-readme-content/10-demo-image-4.jpg)
+
+![Demo Image 5](docs/github-readme-content/11-demo-image-5.jpg)
+
+![Demo Image 6](docs/github-readme-content/12-demo-image-6.jpg)
