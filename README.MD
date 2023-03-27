@@ -327,7 +327,7 @@ ai-customer-analyzer\source\1-monitoring-system\data\ftp-credentials.json
 
 This section shows how to run the monitoring system and the management system.
 
-### Execution of Monitoring System
+### 01 Execution of Monitoring System
 
 The monitoring system can be found on the following directory, "1-monitoring-system", the folder can copied to any place that it wants to be deployed.
 
@@ -347,7 +347,41 @@ ai-customer-analyzer/source/1-monitoring-system
   python vision-analyzer-main.py
 ```
 
-### Execution of Audio Processing Script (Monitoring System)
+### 02 Execution of Monitoring System with Images
+
+- There is a project under the research folder called "test-images-monitoring-system", this is used to test the system with images to calculate the accuracy, the project is found under the following directory.
+
+  ```
+    ai-customer-analyzer\research\test-images-monitoring-system
+  ```
+
+- Step 01: Navigate to the following directory to execute the monitoring system to run with images.
+
+```
+  ai-customer-analyzer\research\test-images-monitoring-system
+```
+
+- Step 02: Place testing images inside the "**input-images**" directory of the project.
+
+```
+  ai-customer-analyzer\research\test-images-monitoring-system\input-images\
+```
+
+- Step 03: Activate the environment (**Note:** if there is no environment created, no need to activate)
+
+```
+  activate ai_customer_analyzer
+```
+
+- Step 04: Execute the image-analyzer-main.py script
+
+```
+  python image-analyzer-main.py
+```
+
+![Test with images](docs/github-readme-content/20-tets-with-images.jpg)
+
+### 03 Execution of Audio Processing Script (Monitoring System)
 
 - Step 01: Activate the environment (**Note:** if there is no environment created, no need to activate)
 
@@ -379,6 +413,8 @@ https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-
 
 ![Demo Image 2](docs/github-readme-content/8-demo-image-2.jpg)
 
+### Monitoring System with Images (Testing)
+
 ![Demo Image 3](docs/github-readme-content/9-demo-image-3.jpg)
 
 ![Demo Image 4](docs/github-readme-content/10-demo-image-4.jpg)
@@ -386,3 +422,9 @@ https://user-images.githubusercontent.com/45822509/228007285-30631366-27a3-487d-
 ![Demo Image 5](docs/github-readme-content/11-demo-image-5.jpg)
 
 ![Demo Image 6](docs/github-readme-content/12-demo-image-6.jpg)
+
+### Management System
+
+```
+
+```
