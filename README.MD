@@ -138,19 +138,87 @@ There is some additional information below to learn more about the Anaconda envi
 
 ```
   conda env create -f environment.yml
-
 ```
 
 - To Export Anaconda Environment
 
 ```
   conda env export > environment.yml
-
 ```
 
 - To Delete Anaconda Environment
 
 ```
   conda env remove -n ENV_NAME
+```
+
+- To Create an Anaconda Environment
 
 ```
+  conda create -n ENV_NAME python=3.9
+```
+
+#### **Method 2: Install dependencies manually**
+
+This method shows how to install dependencies manually; the previous method of installing using conda environment is efficient and good. However, this is just to guide installing the dependencies without using the Anaconda environment.
+
+#### **Step 01: Install Python or Anaconda**
+
+Python is the primary programming language used in this project; earlier, we used Anaconda; the difference between Anaconda and Python is, Anaconda is a distribution of the Python programming language that comes bundled with a set of pre-installed packages and tools for scientific computing and data science. But Python is a general-purpose programming language; In summary, Python is a programming language; Anaconda is a distribution of Python that includes pre-installed packages and tools specifically for scientific computing and data science.
+
+- Official Website Python: https://www.python.org/
+- Official Website Python: https://www.anaconda.com/
+
+#### **Step 02: Install the following dependencies using PIP**
+
+- Install TensorFlow
+
+  ```
+  pip install tensorflow==2.11.0
+  ```
+
+- Install Keras
+
+  ```
+  pip install keras==2.11.0
+  ```
+
+- Install OpenCV
+
+  ```
+  pip install opencv-python==4.7.0.68
+  ```
+
+- Install MySQL Connector
+
+  ```
+    pip install mysql-connector-python==2.2.9
+  ```
+
+- Install PyAudio
+
+  ```
+    pip install PyAudio==0.2.13
+  ```
+
+- Install Pygame
+
+  ```
+    pip install pygame==2.2.0
+  ```
+
+- Install imutils
+
+  ```
+    pip install imutils==0.5.4
+  ```
+
+- Install DeepFace
+
+  ```
+    pip install deepface==0.0.79
+  ```
+
+**IMPORTANT:** After the installation of all the dependencies one by one, the next step is to set up the management system. Otherwise, the monitoring system won't work without the database being configured.
+
+### Setup Management System
