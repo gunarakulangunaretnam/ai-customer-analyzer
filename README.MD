@@ -9,7 +9,7 @@ audio processing technology that can predict sentiments on their vocals, such as
 
 The primary idea of this project is to build an artificial intelligence system that can control the entire shopping mall and analyze customers' interests to increase productivity and sales rate.
 
-![Banner Image](docs/github-readme-content/0-banner-image.jpg)
+![Banner Image](docs/github-readme-content/0-main-banner-image.jpg)
 
 The "AI Customer Analyzer" system is divided into the **Monitoring System** and the **Management System**.
 
