@@ -31,7 +31,7 @@ The "AI Customer Analyzer" system provides an end-to-end solution for retailers 
 - Able to predict emotions.
 - Able to predict customers' race, such as Asian, White, and Black.
 - Able to predict whether customers wear a mask or not.
-- Able to classify customers' vocals to identify their sentiments.
+- Able to classify customers' and employees' vocals to identify their sentiments.
 
 ### Management System Features
 
