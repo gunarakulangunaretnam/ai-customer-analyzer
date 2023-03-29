@@ -399,6 +399,11 @@ ai-customer-analyzer/source/1-monitoring-system
 
 The management system can be opened using a web browser; it is based on where it is deployed; if it is deployed on localhost, it can be accessed by http://localhost/ and navigate to the **public** folder.
 
+#### Management System Credentials
+
+- Username: **admin**
+- Password: **admin**
+
 ## Demonstration
 
 This section shows demos of the projects on the monitoring and management systems; some screenshots of the project are attached below.
@@ -432,6 +437,11 @@ https://user-images.githubusercontent.com/45822509/228026260-51818429-ebc6-44a1-
 ### Management System
 
 #### Login Page
+
+#### Management System Credentials
+
+- Username: **admin**
+- Password: **admin**
 
 ![Login Page](docs/github-readme-content/13-login-page.jpg)
 
