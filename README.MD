@@ -118,7 +118,7 @@ ai-customer-analyzer/source/1-monitoring-system
 
 #### **Method 1: Install using Anaconda Environment (Easy Method)**
 
-This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors.Follow the steps outlined below to install the monitoring system easily.
+This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors. Follow the steps outlined below to install the monitoring system easily.
 
 #### **Step 01: Install Anaconda**
 
@@ -195,7 +195,7 @@ This method shows how to install dependencies manually; the previous method of i
 Python is the primary programming language used in this project; earlier, we used Anaconda; the difference between Anaconda and Python is, Anaconda is a distribution of the Python programming language that comes bundled with a set of pre-installed packages and tools for scientific computing and data science. But Python is a general-purpose programming language; In summary, Python is a programming language; Anaconda is a distribution of Python that includes pre-installed packages and tools specifically for scientific computing and data science.
 
 - Official Website Python: https://www.python.org/
-- Official Website Python: https://www.anaconda.com/
+- Official Website Anaconda: https://www.anaconda.com/
 
 #### **Step 02: Install the following dependencies using PIP**
 
@@ -247,7 +247,7 @@ Python is the primary programming language used in this project; earlier, we use
     pip install deepface==0.0.79
   ```
 
-- Install textblob
+- Install TextBlob
 
   ```
     pip install textblob==0.17.1
@@ -406,7 +406,7 @@ The management system can be opened using a web browser; it is based on where it
 
 ## Demonstration
 
-This section shows demos of the projects on the monitoring and management systems; some screenshots of the project are attached below.
+This section shows demos of the projects on the monitoring and management systems; some screenshots and demo videos of the project are given below.
 
 ### 01 Monitoring System
 
