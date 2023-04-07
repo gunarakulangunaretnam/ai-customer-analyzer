@@ -71,7 +71,11 @@
                 </table>
 
         </div>
-            
+
+        <div class="d-flex justify-content-center">
+            {{ $audio_data->links() }}
+        </div> 
+        
     </div>
 
     <script>

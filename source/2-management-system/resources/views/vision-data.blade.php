@@ -67,6 +67,11 @@
         
 </div>
 
+<div class="d-flex justify-content-center">
+  {{ $vision_data->links() }}
+</div> 
+
+
 <script>
 
   window.onload = function(){
