@@ -11,9 +11,7 @@ The primary idea of this project is to build an artificial intelligence system t
 
 ![Banner Image](docs/github-readme-content/0-banner-image.jpg)
 
-The "AI Customer Analyzer" system is divided into the **Monitoring System** and the **Management System**.
-
-The Monitoring System is the AI-powered part that captures and predicts customer information in real time. It leverages computer vision and artificial intelligence technology to analyze customers' faces and provide insights such as age, gender, emotion, race, and sentiment analysis. This system automatically collects data and sends it to the Management System for further processing.
+The "AI Customer Analyzer" system is divided into two parts: **Monitoring System** and **Management System**. The Monitoring System is the AI-powered part that captures and predicts customer information in real time. It leverages computer vision and artificial intelligence technology to analyze customers' faces and provide insights such as age, gender, emotion, race, and sentiment analysis. This system automatically collects data and sends it to the Management System for further processing.
 
 The Management System is part of the system administrators use to analyze the data collected by the Monitoring System. It provides an easy-to-use interface that allows administrators to access real-time data insights and trends about their customer base. The Management System enables retailers to understand their customers better and make data-driven decisions to improve customer experience and drive revenue growth.
 
