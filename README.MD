@@ -112,7 +112,7 @@ This section explains how to deploy AI Customer Analyzer on a new computer. The 
 ai-customer-analyzer/source/1-monitoring-system
 ```
 
-#### Install Dependencies**
+#### **Install Dependencies**
 
 This section shows how to install the dependencies easily using the **Anaconda environment** from the requirements.yml. It makes it easy to manage dependencies and create reproducible environments for the projects.
 
