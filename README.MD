@@ -108,17 +108,15 @@ This section explains how to deploy AI Customer Analyzer on a new computer. The 
 
 ### Setup Monitoring System
 
-To set up the monitoring system, two methods are available: installing all the required dependencies from the requirements.yml file using the Anaconda environment, and the other way is installing dependencies one by one. So, the easiest way to install is using the requirements.yml method, which helps install the monitoring system without errors. However, this section covers both scenarios, installing manually and from the requirements.yml file.
-
 **IMPORTANT:** The soruce code of the monitoring system is found under the following directory
 
 ```
 ai-customer-analyzer/source/1-monitoring-system
 ```
 
-#### **Method 1: Install using Anaconda Environment (Easy Method)**
+#### Install Dependencies**
 
-This method shows how to install the dependencies easily using the Anaconda environment from the requirements.yml; this method is easy and **highly recommended** to avoid errors. Follow the steps outlined below to install the monitoring system easily.
+This section shows how to install the dependencies easily using the **Anaconda environment** from the requirements.yml. It makes it easy to manage dependencies and create reproducible environments for the projects.
 
 #### **Step 01: Install Anaconda**
 
@@ -185,81 +183,6 @@ There is some additional information below to learn more about the Anaconda envi
 ```
   conda create -n ENV_NAME python=3.9
 ```
-
-#### **Method 2: Install dependencies manually**
-
-This method shows how to install dependencies manually; the previous method of installing using conda environment is efficient and good. However, this is just to guide installing the dependencies without using the Anaconda environment.
-
-#### **Step 01: Install Python or Anaconda**
-
-Python is the primary programming language used in this project; earlier, we used Anaconda; the difference between Anaconda and Python is, Anaconda is a distribution of the Python programming language that comes bundled with a set of pre-installed packages and tools for scientific computing and data science. But Python is a general-purpose programming language; In summary, Python is a programming language; Anaconda is a distribution of Python that includes pre-installed packages and tools specifically for scientific computing and data science.
-
-- Official Website Python: https://www.python.org/
-- Official Website Anaconda: https://www.anaconda.com/
-
-#### **Step 02: Install the following dependencies using PIP**
-
-- Install TensorFlow
-
-  ```
-  pip install tensorflow==2.11.0
-  ```
-
-- Install Keras
-
-  ```
-  pip install keras==2.11.0
-  ```
-
-- Install OpenCV
-
-  ```
-  pip install opencv-python==4.7.0.68
-  ```
-
-- Install MySQL Connector
-
-  ```
-    pip install mysql-connector-python==2.2.9
-  ```
-
-- Install PyAudio
-
-  ```
-    pip install PyAudio==0.2.13
-  ```
-
-- Install Pygame
-
-  ```
-    pip install pygame==2.2.0
-  ```
-
-- Install imutils
-
-  ```
-    pip install imutils==0.5.4
-  ```
-
-- Install DeepFace
-
-  ```
-    pip install deepface==0.0.79
-  ```
-
-- Install TextBlob
-
-  ```
-    pip install textblob==0.17.1
-  ```
-
-- Install Speech Recognition
-
-  ```
-    pip install SpeechRecognition==3.9.0
-  ```
-
-**IMPORTANT:** After the installation of all the dependencies one by one, the next step is to set up the management system. Otherwise, the monitoring system won't work without the database being configured.
 
 ### Setup Management System
 
