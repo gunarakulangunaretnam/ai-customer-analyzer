@@ -1,5 +1,25 @@
 # AI Customer Analyzer
 
+## Repo Structure 
+
+```text
+.
+├── docs                                  # Documents Folder.
+│   ├── github-readme-content                 # Contains GitHub Readme Content.
+│   └── project-documentations                # Contains Project-related Documents.
+├── research                              # Contains Research files
+│   ├── management-panel-template             # Template of Management System in HTML/CSS
+│   ├── test-images-monitoring-system         # Monitoring System that can be tested with images instead of Camera.
+│   ├── database-structure.txt                # Database Structure
+│   └── google-gtts.py                        # Text to Speech Python Script File
+├── source                                # Contains Source Code (Main Project Folder)
+│   ├── 0-resources                           # Contains resources: database, requirements.yml
+│   ├── 1-monitoring-system                   # Contains Monitoring System Project
+│   └── 1-management-system                   # Contains Management System Project
+├── LICENCE                               # Licence File.
+└── README.MD                             # Readme file.
+```
+
 ## Introduction
 
 AI Customer Analyzer is a computer vision and natural language processing (NLP)-based artificial intelligence technology for advanced customer analysis. This innovative prototype analyzes customer faces in real-time to predict their age, gender, emotion, and race.
@@ -79,24 +99,6 @@ The following system flow diagram explains how the AI Customer Analyzer system f
 | **deepface**        | Ver: 0.0.79   |
 
 ## Repo Structure
-
-```text
-.
-├── docs                                  # Documents Folder.
-│   ├── github-readme-content                 # Contains GitHub Readme Content.
-│   └── project-documentations                # Contains Project-related Documents.
-├── research                              # Contains Research files
-│   ├── management-panel-template             # Template of Management System in HTML/CSS
-│   ├── test-images-monitoring-system         # Monitoring System that can be tested with images instead of Camera.
-│   ├── database-structure.txt                # Database Structure
-│   └── google-gtts.py                        # Text to Speech Python Script File
-├── source                                # Contains Source Code (Main Project Folder)
-│   ├── 0-resources                           # Contains resources: database, requirements.yml
-│   ├── 1-monitoring-system                   # Contains Monitoring System Project
-│   └── 1-management-system                   # Contains Management System Project
-├── LICENCE                               # Licence File.
-└── README.MD                             # Readme file.
-```
 
 **IMPORTANT:** The soruce code of **Monitoring System** and **Management System** are found under the **soruce** folder.
 
