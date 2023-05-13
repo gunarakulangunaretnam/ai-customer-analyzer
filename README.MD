@@ -301,6 +301,16 @@ ai-customer-analyzer/source/1-monitoring-system/data/database-credentials.json
 
 ![MySQL Database Credentials](docs/github-readme-content/5-database-credentials-json.jpg)
 
+### Configuring Database with Management System
+
+This step configures the database with the management system; suppose the database is hosted remotely. Letting the management system know the credentials and the host is essential. Open the .env file in the following directory to provide the database credentials and host information.
+
+```
+ai-customer-analyzer/source/2-management-system/.env
+```
+
+![MySQL Database Credentials](docs/github-readme-content/23-database-management-system.png)
+
 **IMPORTANT:** During the running time of the monitoring system, it sends captured information to this database; if the database is hosted somewhere other than localhost, it is important to edit this file.
 
 ### Configuring FTP with Monitoring System
