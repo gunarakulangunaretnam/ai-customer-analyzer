@@ -1,6 +1,6 @@
 # AI Customer Analyzer
 
-## Repo Structure 
+## Repo Structure
 
 ```text
 .
@@ -232,7 +232,7 @@ This step configures the database with the management system; suppose the databa
 ai-customer-analyzer/source/2-management-system/.env
 ```
 
-![MySQL Database Credentials](docs/github-readme-content/23-database-management-system.png)
+![MySQL Database Credentials](docs/github-readme-content/23-database-management-system.jpg)
 
 **IMPORTANT:** During the running time of the monitoring system, it sends captured information to this database; if the database is hosted somewhere other than localhost, it is important to edit this file.
 
