@@ -271,7 +271,7 @@ ai-customer-analyzer/source/1-monitoring-system
 - Step 01: Activate the environment
 
 ```
-  activate ai_customer_analyzer
+  conda activate ai_customer_analyzer
 ```
 
 - Step 02: Execute the vision-analyzer-main.py script
@@ -303,7 +303,7 @@ ai-customer-analyzer/source/1-monitoring-system
 - Step 03: Activate the environment (**Note:** if there is no environment created, no need to activate)
 
 ```
-  activate ai_customer_analyzer
+  conda activate ai_customer_analyzer
 ```
 
 - Step 04: Execute the image-analyzer-main.py script
@@ -319,7 +319,7 @@ ai-customer-analyzer/source/1-monitoring-system
 - Step 01: Activate the environment (**Note:** if there is no environment created, no need to activate)
 
 ```
-  activate ai_customer_analyzer
+  conda activate ai_customer_analyzer
 ```
 
 - Step 02: Execute the audio-analyzer-main.py script
