@@ -268,7 +268,7 @@ The monitoring system can be found on the following directory, "1-monitoring-sys
 ai-customer-analyzer/source/1-monitoring-system
 ```
 
-- Step 01: Activate the environment (**Note:** if there is no environment created, no need to activate)
+- Step 01: Activate the environment
 
 ```
   activate ai_customer_analyzer
