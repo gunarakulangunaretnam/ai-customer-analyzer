@@ -401,7 +401,7 @@ https://user-images.githubusercontent.com/45822509/228026260-51818429-ebc6-44a1-
 ## Social Links
 
 * [Linkedin Profile](https://www.linkedin.com/in/gunarakulangunaretnam)
-* [Facebook Profile](https://www.facebook.com/gunarakulangr.page)
+* [Facebook Profile](https://www.facebook.com/gunarakulangunaratnam)
 * [Instagram Profile](https://www.instagram.com/gunarakulangunaretnam)
 * [Twitter Profile ](https://twitter.com/gunarakulangr)
 * [Kaggle Profile](https://www.kaggle.com/gunarakulangr)
