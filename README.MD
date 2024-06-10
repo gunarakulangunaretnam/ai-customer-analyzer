@@ -1,4 +1,4 @@
-# AI CUSTOMER ANALYZER
+# AI Customer Analyzer
 
 ## Repo Structure
 
@@ -398,7 +398,7 @@ https://user-images.githubusercontent.com/45822509/228026260-51818429-ebc6-44a1-
 
 ![Vision Data Page 1](docs/github-readme-content/19-settings-page.jpg)
 
-# CONTACT
+# Contact
 
 ### Website: 
 
